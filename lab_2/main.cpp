@@ -11,7 +11,7 @@ int main () {
     cin >> initial_value;
     
     MakeChange (initial_value, quarters, dimes, nickels, pennies);
-    
+     
     cout << endl << "Initial Value: " << initial_value
          << endl << "Number of Quarters: " << quarters
          << endl << "Number of Dimes: " << dimes
