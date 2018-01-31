@@ -1,6 +1,6 @@
 /*
  * Name        : lab_3.cpp
- * Author      : FILL IN
+ * Author      : Robert Thomas
  * Description : Using branching statements, looping statements and string and
  *               character functions complete the functions
  */
@@ -29,7 +29,52 @@
  * @return string - The output string specified in the documentation above
  */
 string Goldilocks(string item, int number) {
-  // CODE HERE
+  string output_str = "";
+  
+  if (item == "porridge") {
+    switch (number) {
+      case 1:
+        output_str = "This porridge is too hot";
+        break;
+      case 2:
+        output_str = "This porridge is too cold";
+        break;
+      case 3:
+        output_str = "This porridge is just right";
+        break;
+    };
+  }
+  else if (item == "chair") {
+    switch (number) {
+      case 1:
+        output_str = "This chair is too big";
+        break;
+      case 2:
+        output_str = "This chair is too small";
+        break;
+      case 3:
+        output_str = "This chair is just right";
+        break;
+    };
+  }
+  else if (item == "bed") {
+    switch (number) {
+      case 1:
+        output_str = "This bed is too hard";
+        break;
+      case 2:
+        output_str = "This bed is too soft";
+        break;
+      case 3:
+        output_str = "This bed is just right";
+        break;
+    };
+  }
+  else {
+    output_str = "Nothing happened";
+  }
+  
+  return output_str;
 }
 
 /*
@@ -46,8 +91,61 @@ string Goldilocks(string item, int number) {
  *               0 if invalud inputs
  */
 int RockScissorPaper(char player_one, char player_two) {
-  // YOU MUST USE A SWITCH IN THIS FUNCTION
-  // CODE HERE
+  int score = 0;
+  
+  if (player_one == 'r' || player_one == 'R') {
+    switch (player_two) {
+      case 'R':
+      case 'r':
+        score = 3;
+        break;
+      case 'P':
+      case 'p':
+        score = 2;
+        break;
+      case 'S':
+      case 's':
+        score = 1;
+        break;
+    };
+  }
+  else if (player_one == 's' || player_one == 'S') {
+    switch (player_two) {
+      case 'R':
+      case 'r':
+        score = 2;
+        break;
+      case 'P':
+      case 'p':
+        score = 1;
+        break;
+      case 'S':
+      case 's':
+        score = 3;
+        break;
+    };
+  }
+  else if (player_one == 'p' || player_one == 'P') {
+    switch (player_two) {
+      case 'R':
+      case 'r':
+        score = 1;
+        break;
+      case 'P':
+      case 'p':
+        score = 3;
+        break;
+      case 'S':
+      case 's':
+        score = 2;
+        break;
+    };
+  }
+  else {
+    score = 0;
+  }
+  
+  return score;
 }
 
 /*
@@ -56,7 +154,13 @@ int RockScissorPaper(char player_one, char player_two) {
  * @return string - a string containing the converted input string
  */
 string ToLower(string input) {
-  // CODE HERE
+  string converted_string = input;
+  int length_str = converted_string.length();
+  
+  for (int i=0;i<length_str; i++) {
+    converted_string.at(i) = tolower(input.at(i));
+  }
+  return converted_string;
 }
 
 /*
@@ -65,5 +169,11 @@ string ToLower(string input) {
  * @return string - a string containing the converted input string
  */
 string ToUpper(string input) {
-  // CODE HERE
+  string converted_string = input;
+  int length_str = converted_string.length();
+  
+  for (int i=0;i<length_str; i++) {
+    converted_string.at(i) = toupper(input.at(i));
+  }
+  return converted_string;
 }

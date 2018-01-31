@@ -10,6 +10,7 @@
 #include <iostream>
 #include <string>
 #include <cctype>
+using namespace std;
 using std::cin;
 using std::cout;
 using std::endl;
