@@ -20,7 +20,7 @@ using std::endl;
 using std::string;
 using std::stringstream;
 
-/*
+/* 
  * Create a string containing the contents of an array, each element separated
  * by a specified character. For example, if the array contents
  * are {1, 2, 3} and the separator character is ':', the string returned
@@ -35,7 +35,7 @@ using std::stringstream;
  *                  specified separator character
  */
  
-//string PrepareForDisplay(int values[], int size, char separator = ',');
+string PrepareForDisplay(int values[], int size, char separator);
 
 /*
  * Test to see if an array contains a specified value.
