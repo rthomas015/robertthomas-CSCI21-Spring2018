@@ -2,11 +2,13 @@
 /***** Programming Project 1    UNIT TEST *****/
 /**********************************************/
 
-#include <cstdint>
+//#include <cstdint>
 #include <string>
 #include <vector>
 using std::string;
 using std::vector;
+using namespace std;
+
 
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
@@ -20,6 +22,23 @@ using std::vector;
  *              in theString (may be 0)
  */
 void countCharacters (string theString, uint32_t& alpha, uint32_t& num) {
+	alpha = 0;
+	num = 0;
+	
+	for (int i=0;i<theString.size();i++) {
+		if ((theString.at(i) >= 48) && (theString.at(i) <= 57)) {
+			num = num + 1;
+		}
+		else if ((theString.at(i) >= 65) && (theString.at(i) <= 90)) {
+			alpha = alpha + 1;
+		}
+		else if ((theString.at(i) >= 97) && (theString.at(i) <= 122)) {
+			alpha = alpha + 1;
+		}
+		else {
+			
+		}
+	}
 
 }
 
@@ -32,7 +51,32 @@ void countCharacters (string theString, uint32_t& alpha, uint32_t& num) {
  *         uppercase/lowercase; empty string argument returns empty string
  */
 string upAndDown (string theString) {
-	return string("");
+	string testString = theString;
+	for (int i=0;i<testString.size();i++) {
+		if (i % 2 == 0) {
+			//first char
+			if ((testString.at(i) >= 65) && (testString.at(i) <= 90)) {
+				//upper case already
+			}
+			else if ((testString.at(i) >= 97) && (testString.at(i) <= 122)) {
+				//lower case
+				testString.at(i) = testString.at(i) - 32;
+			}
+			
+		}
+		else if (i % 2 == 1){
+			//second char
+			if ((testString.at(i) >= 65) && (testString.at(i) <= 90)) {
+				//upper case
+				testString.at(i) = testString.at(i) + 32;
+			}
+			else if ((testString.at(i) >= 97) && (testString.at(i) <= 122)) {
+				//lower case
+			}
+		}
+	}
+	
+	return testString;
 }
 
 /*
@@ -44,7 +88,18 @@ string upAndDown (string theString) {
  *         argument; returns 0 on empty string
  */
 uint32_t countWords (string theString) {
-	return 0;
+	int num_of_words = 1;
+	if (theString == "") {
+		num_of_words = 0;
+	}
+
+	for (int i=0;i<theString.size();i++) {
+		if (theString.at(i) == 32) {
+			num_of_words = num_of_words + 1;
+		}
+	}
+	
+	return num_of_words;
 }
 
 /*
@@ -53,7 +108,14 @@ uint32_t countWords (string theString) {
  * @return the average of all values in the vector
  */
 int32_t computeAverage (vector<int32_t> values) {
-	return 0;
+	int total_value = 0;
+	
+	for (int i=0;i<3;i++) {
+		total_value = total_value + values.at(i);
+	}
+	
+	total_value = total_value / 3;
+	return total_value;
 }
 
 /*
@@ -62,7 +124,15 @@ int32_t computeAverage (vector<int32_t> values) {
  * @return the smallest/minimum value in the vector
  */
 int32_t findMinValue (vector<int32_t> values) {
-	return 0;
+	int smallest_value = values.at(0);
+	
+	for (int i=0;i<3;i++) {
+		if (smallest_value > values.at(i)) {
+			smallest_value = values.at(i);
+		}
+	}
+	
+	return smallest_value;
 }
 
 /*
@@ -71,7 +141,15 @@ int32_t findMinValue (vector<int32_t> values) {
  * @return the largest/maximum value in the vector
  */
 int32_t findMaxValue (vector<int32_t> values) {
-	return 0;
+	int max_value = values.at(0);
+	
+	for (int i=0;i<3;i++) {
+		if (max_value < values.at(i)) {
+			max_value = values.at(i);
+		}
+	}
+	
+	return max_value;
 }
 
 /*
@@ -123,10 +201,13 @@ TEST_CASE("function implementations") {
 		CHECK(countWords("hello world") == 2);
 		CHECK(countWords("hello, world") == 2);
 	}
-
+	
 	SECTION("computeAverage") {
 
-		vector<int32_t> values = {10, 20, 30};
+		vector<int32_t> values (3);
+		values.at(0) = 10;
+		values.at(1) = 20;
+		values.at(2) = 30;
 	
 		CHECK(computeAverage(values) == 20);
 		
@@ -142,10 +223,14 @@ TEST_CASE("function implementations") {
 		values[0] = -5, values[1] = 0, values[2] = 5;
 		CHECK(computeAverage(values) == 0);
 	}
-
+	
 	SECTION("findMinValue") {
 
-		vector<int32_t> values = {-1, 0, 1};
+		vector<int32_t> values(3);
+		values.at(0) = -1;
+		values.at(1) = 0;
+		values.at(2) = 1;
+
 		CHECK(findMinValue(values) == -1);
 		
 		values[0] = -3, values[1] = -2, values[2] = -1;
@@ -163,7 +248,11 @@ TEST_CASE("function implementations") {
 
 	SECTION("findMaxValue") {
 
-		vector<int32_t> values = {-1, 0, 1};
+		vector<int32_t> values(3);
+		values.at(0) = -1;
+		values.at(1) = 0; 
+		values.at(2) = 1;
+		
 		CHECK(findMaxValue(values) == 1);
 		
 		values[0] = -3, values[1] = -2, values[2] = -1;
@@ -178,4 +267,5 @@ TEST_CASE("function implementations") {
 		values[0] = INT32_MIN, values[1] = INT32_MIN, values[2] = INT32_MIN;
 		CHECK(findMaxValue(values) == INT32_MIN);
 	}
+	
 }
