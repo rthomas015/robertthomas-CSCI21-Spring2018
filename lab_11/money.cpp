@@ -91,7 +91,11 @@ const Money operator -(const Money& amount1, const Money& amount2){
    * @return Money - The result of the negation of the two member variables
    */
    const Money operator -(const Money &amount) {
-     
+     int neg_cents =  -amount.cents_;
+     int neg_dollars = -amount.dollars_;
+     //amount.cents_ = -amount.cents_;
+     //amount.dollars_ = -amount.dollars_;
+     return Money(neg_dollars, neg_cents);
    }
 
   /*
@@ -105,7 +109,36 @@ const Money operator -(const Money& amount1, const Money& amount2){
    * @return ostream& - The ostream object to allow for chaining of <<
    */
    ostream& operator <<(ostream &out, const Money &amount) {
-     
+        int all_cents = amount.cents_ + amount.dollars_ * 100;
+        
+        if (all_cents >= 0) {
+            //positive
+            if (amount.cents_ > 9) {
+                out << "$" << amount.dollars_ << "." << amount.cents_; 
+            }
+            else {
+                out << "$" << amount.dollars_ << ".0" << amount.cents_;
+            }
+        }
+        else {
+            //negative
+            int final_cents = abs(amount.cents_);
+            
+            if ((final_cents > 9) && (amount.dollars_ < 0)) {
+                out << "$" << amount.dollars_ << "." << final_cents; 
+            }
+            else if ((final_cents > 9) && (amount.dollars_ == 0)) {
+                out << "$-0." << final_cents;
+            }
+            else if ((final_cents<9) && (amount.dollars_ < 0)) {
+                out << "$" << amount.dollars_ << ".0" << final_cents;
+            }
+            else if ((final_cents<9) && (amount.dollars_ == 0)) {
+                out << "$-0.0"  << final_cents;
+            }
+        }
+        
+        return out;
    }
 
 
