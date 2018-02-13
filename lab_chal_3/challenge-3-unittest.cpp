@@ -5,6 +5,8 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 
+#include "LC3.h"
+
 /*
  * Unit test. Do not alter.
  */

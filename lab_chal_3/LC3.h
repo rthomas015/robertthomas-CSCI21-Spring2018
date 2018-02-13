@@ -1,11 +1,16 @@
 /**********************************************/
 /***** Programming Challenge 3       SPEC *****/
 /**********************************************/
+#ifndef LC3_H
+#define LC3_H
+
 #include <algorithm>
 #include <fstream>
 #include <string>
 #include <sstream>
 #include <vector>
+using namespace std;
+
 using std::ifstream;
 using std::ostringstream;
 using std::sort;
@@ -19,7 +24,7 @@ class WordList {
 		 * Default constructor. By default, will not allow duplicates.
 		 * @param newAllowDupes if true, duplicate words will be allowed
 		 */
-		WordList(bool newAllowDupes=false);
+		WordList(bool newAllowDupes=false); 
 
 		/*
 		 * Add a word to the list.
@@ -47,7 +52,7 @@ class WordList {
 		 * Return the number of words in the list.
 		 * @return an integer containing the number of words in the list
 		 */
-		uint32_t getWordCount ();
+		int getWordCount ();
 
 		/*
 		 * Clear all of the contents of the list.
@@ -87,3 +92,5 @@ class WordList {
 		vector<string> words;
 		bool allowDupes;
 };
+
+#endif
