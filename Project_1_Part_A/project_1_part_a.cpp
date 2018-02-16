@@ -31,19 +31,19 @@ int main () {
         bank_ID = card_string.substr(0, 6);
         
         //test each card for a valid BIN (6 digits) 
-        if (bank_ID.substr(0,2) == "34" || bank_ID.substr(0,2) == "37") {
+        if ((bank_ID.substr(0,2) == "34" || bank_ID.substr(0,2) == "37") && card_string.length() == 15) {
             //american express
             cout << "Accepted card: " << card_string << " --- American Express" << endl;
         }
-        else if ((bank_ID.substr(0,4) == "6011") || (bank_ID.substr(0,3) >= "644" && bank_ID.substr(0,3) <= "649") || (bank_ID >= "622126" && bank_ID <= "622925") || (bank_ID.substr(0,2) == "65")) {
+        else if (((bank_ID.substr(0,4) == "6011") || (bank_ID.substr(0,3) >= "644" && bank_ID.substr(0,3) <= "649") || (bank_ID >= "622126" && bank_ID <= "622925") || (bank_ID.substr(0,2) == "65")) && card_string.length() == 16) {
             //discover
             cout << "Accepted card: " << card_string << " --- Discover" << endl;
         }
-        else if (bank_ID.substr(0,2) >= "51" && bank_ID.substr(0,2) <= "55") {
+        else if ((bank_ID.substr(0,2) >= "51" && bank_ID.substr(0,2) <= "55") && card_string.length() == 16) {
             //mastercard
             cout << "Accepted card: " << card_string << " --- MasterCard" << endl;
         }
-        else if (bank_ID.substr(0,1) == "4") {
+        else if ((bank_ID.substr(0,1) == "4") && (card_string.length() >= 13 && card_string.length() <= 16)) {
             //visa
             cout << "Accepted card: " << card_string << " --- Visa" << endl;
         }
