@@ -99,7 +99,7 @@
    * @return double - The temperature in Fahrenheit
    */
   double Temperature::GetTempAsFahrenheit() const {
-      return ((((kelvin_ - 273.15) * 9.0) / 5) + 32);
+      return ((((GetTempAsCelsius()) * 9.0) / 5) + 32);
   }
 
   /*
@@ -117,7 +117,7 @@
    * @return string - A string representation of the temperature or invalid if
    *                  the provided unit is not recognized
    */
-  string Temperature::ToString(char unit = 'K') const {
+  string Temperature::ToString(char unit) const {
       stringstream full_string;
       double temp_value = 0.00;
       

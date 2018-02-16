@@ -42,7 +42,7 @@ class Temperature {
 
   double GetTempAsFahrenheit() const;
 
-  string ToString(char unit) const;
+  string ToString(char unit  = 'K') const;
 
  private:
   double kelvin_;
