@@ -31,19 +31,19 @@ int main () {
         bank_ID = card_string.substr(0, 6);
         
         //test each card for a valid BIN (6 digits) 
-        if (bank_ID == "378282" || bank_ID == "371449") {
+        if (bank_ID.substr(0,2) == "34" || bank_ID.substr(0,2) == "37") {
             //american express
             cout << "Accepted card: " << card_string << " --- American Express" << endl;
         }
-        else if (bank_ID == "601111" || bank_ID == "601100") {
+        else if ((bank_ID.substr(0,4) == "6011") || (bank_ID.substr(0,3) >= "644" && bank_ID.substr(0,3) <= "649") || (bank_ID >= "622126" && bank_ID <= "622925") || (bank_ID.substr(0,2) == "65")) {
             //discover
             cout << "Accepted card: " << card_string << " --- Discover" << endl;
         }
-        else if (bank_ID == "555555" || bank_ID == "510510") {
+        else if (bank_ID.substr(0,2) >= "51" && bank_ID.substr(0,2) <= "55") {
             //mastercard
             cout << "Accepted card: " << card_string << " --- MasterCard" << endl;
         }
-        else if (bank_ID == "411111" || bank_ID == "401288" || bank_ID == "422222") {
+        else if (bank_ID.substr(0,1) == "4") {
             //visa
             cout << "Accepted card: " << card_string << " --- Visa" << endl;
         }
@@ -77,14 +77,22 @@ int main () {
     
     //output:
     /*
-    Card Declined: 0000001234567890 --- Not from a major issuer/bank
-    Card Declined: 1111111234567890 --- Not from a major issuer/bank
-    Card Declined: 2222221234567890 --- Not from a major issuer/bank
-    Card Declined: 3333331234567890 --- Not from a major issuer/bank
-    Card Declined: 4444441234567890 --- Not from a major issuer/bank
-    Accepted card: 3782821234567890 --- American Express
-    Accepted card: 6011001234567890 --- Discover
-    Card Declined: 1234561234567890 --- Not from a major issuer/bank
+
+Card Declined: 0000001234567890 --- Not from a major issuer/bank
+Card Declined: 1111111234567890 --- Not from a major issuer/bank
+Card Declined: 2222221234567890 --- Not from a major issuer/bank
+Card Declined: 3333331234567890 --- Not from a major issuer/bank
+Accepted card: 4444441234567890 --- Visa
+Accepted card: 3782821234567890 --- American Express
+Accepted card: 6011001234567890 --- Discover
+Card Declined: 1234561234567890 --- Not from a major issuer/bank
+Accepted card: 3400000000000000 --- American Express
+Accepted card: 3422222222222222 --- American Express
+Accepted card: 3477777777777777 --- American Express
+Accepted card: 5144444444444444 --- MasterCard
+Accepted card: 5222222222222222 --- MasterCard
+Accepted card: 5333333333333333 --- MasterCard
+Card Declined: 5777777777777777 --- Not from a major issuer/bank
     
     */
     
