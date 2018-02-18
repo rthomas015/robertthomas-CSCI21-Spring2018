@@ -20,14 +20,19 @@
 		    bool word_added = false;
 		    
 		    //words.size();
-		    if (allowDupes = false) {
-		        if (!hasWord(word)) {
+		    if (allowDupes == false) {
+		    	//if duplicates are not allowed, test to find duplicate first
+		        if (hasWord(word) == false) {
 		           words.resize((words.size() + 1));
 		           words.at(words.size() - 1) = word;
 		           word_added = true; 
 		        }
+		        else {
+		        	word_added = false;
+		        }
 		    }
 		    else {
+		    	//if duplicates are allowed add word automatically
 		        words.resize((words.size() + 1));
 		        words.at(words.size() - 1) = word;
 		        word_added = true;
@@ -45,9 +50,9 @@
 		    bool removed = false;
 		    int num_of_words = words.size();
 		    
-		    for(int i=0;i<num_of_words;i++) {
+		    for(int i=(num_of_words-1);i>=0;i--) {
 		        if (words.at(i) == word) {
-		           words.at(i) = "";
+		           words.pop_back();
 		           removed = true;
 		        }
 		    }
@@ -76,6 +81,7 @@
 		 * Return the number of words in the list.
 		 * @return an integer containing the number of words in the list
 		 */
+
 		int WordList::getWordCount () {
 		    int num_of_words = words.size();
 		    
@@ -86,7 +92,10 @@
 		 * Clear all of the contents of the list.
 		 */
 		void WordList::clear () {
-            words.resize(0);
+            for (int i=words.size();i>=0;i--) {
+            	words.pop_back();
+            	words.resize(i);
+            }
 		}
 
 		/*
@@ -94,14 +103,21 @@
 		 * lexicographical order which will be case-sensitive.
 		 */
 		void WordList::sort () {
-		   /* int num_of_words = words.size();
+			int num_of_words = words.size();
+			string place_holder = "",
+				   test_case = words.at(0);
+		    
+		    for(int i=0;i<num_of_words;i++) {
+		    	for (int j=0;j<num_of_words-1;j++) {
+		    		if (words.at(j) > words.at(j+1)) {
+		    			place_holder = words.at(j);
+		    			words.at(j) = words.at(j+1);
+		    			words.at(j+1) = place_holder;
+		    		}
+		    	} 
+		    }
 		    
 		    
-		    for(int i=num_of_words;i>=0;i--) {
-		        if (words.at(i) == word) {
-		            has_word = true;
-		        }
-		    }*/
 		}
 
 		/*
@@ -113,23 +129,24 @@
 		 */
 		bool WordList::loadFile (string filename) {
 		    ifstream file;
-		    file.open("challenge-3-data.txt");
-		    
-		    int counter = 1;
-		    int size_of_vec = words.size();
-		    string list = "";
-
 		    bool added = false;
-
-		    while (!file.eof()) {
-		        getline(file, list);
-		        words.resize((size_of_vec+counter));
-		        words.at((size_of_vec+counter-1)) = list;
-		        counter = counter + 1;
-		        added = true;
-		    }
+		    file.open(filename.c_str());
 		    
-		    file.close();
+		    if (!file.is_open()) {
+    			return added;
+			}
+		    else {
+		    	string list = "";
+
+		    	while (!file.eof()) {
+		        	getline(file, list);
+		        	addWord(list);
+		        	added = true;
+		    	}
+		    
+		    	file.close();
+		    }
+
 		    return added;
 		    
 		}
@@ -150,8 +167,11 @@
 		    stringstream ss;
 		    int num_of_words = words.size();
 		    
-		    for(int i=1;i<=num_of_words;i++) {
-                ss << "[" << i << "]" << words.at(i) << "\n";
+		    if (num_of_words > 0) {
+		    	for(int i=0;i<num_of_words;i++) {
+                	ss << "[" << (i+1) << "] " << words.at(i) << "\n";
+		    	}
 		    }
+		    
 		    return ss.str();
 		}
