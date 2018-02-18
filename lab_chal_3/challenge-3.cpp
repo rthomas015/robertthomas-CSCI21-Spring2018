@@ -103,9 +103,9 @@
 		 * lexicographical order which will be case-sensitive.
 		 */
 		void WordList::sort () {
+			//bubblesort
 			int num_of_words = words.size();
-			string place_holder = "",
-				   test_case = words.at(0);
+			string place_holder = "";
 		    
 		    for(int i=0;i<num_of_words;i++) {
 		    	for (int j=0;j<num_of_words-1;j++) {
