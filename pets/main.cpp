@@ -30,7 +30,7 @@ using namespace std;
 //Bird class derived from Pet class
 
 int main () {
-    Bird Tweety("Tweety", 1, true, true, true, true, true);
+    Bird Tweety("Tweety", 1, false, true, false, true, true);
     Cat Sylvester ("Sylvester", 2, false, false, false, false, false);
     Dog Krypto ("Name", 3, false, false, false);
     Pet Test_Pet;
