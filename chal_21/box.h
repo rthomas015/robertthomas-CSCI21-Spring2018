@@ -4,8 +4,9 @@
  * Author      : Robert Thomas
  * Description : template class for Box that accepts different types of data
  * Time: 80
- */
+*/
 
+/*
 Define a "header only" template class named Box with:- 
 one data member 
 contents (data type templated)
