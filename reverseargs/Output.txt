@@ -1,0 +1,14 @@
+    //Output of Program:
+    /*
+    Test #1:
+    rthomas015:~/workspace/reverseargs (master) $ ./reverseArgs.exe first_arg second_arg
+    second_arg first_arg
+    
+    Test #2:
+    rthomas015:~/workspace/reverseargs (master) $ ./reverseArgs.exe I love gorgonzola cheese, but I hate toothpaste
+    toothpaste hate I but cheese, gorgonzola love I
+    
+    Test #3:
+    rthomas015:~/workspace/reverseargs (master) $ ./reverseArgs.exe I would rather be at "UC Santa Barbara"
+    UC Santa Barbara at be rather would I  rthomas015:~/workspace/reverseargs (master) $ 
+    */
