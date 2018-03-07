@@ -62,5 +62,3 @@ bool ProcessFile(string filename) {
     input_file.close();
     return success;
 }
-
-//? void ProcessArguments(int argc, char* argv[]);

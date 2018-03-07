@@ -1,11 +1,11 @@
-labtest: lab_7_unit_test.o lab_7.o
-	g++ -Wall -g -o labtest lab_7.o lab_7_unit_test.o
+labtest_8: lab_8_unit_test.o lab_8.o 
+	g++ -Wall -g -o labtest_8 lab_8.o lab_8_unit_test.o 
+	
+lab_8: lab_8.cpp
+	g++ -Wall -g -c lab_8.cpp
 
-lab_4: lab_7.cpp
-	g++ -Wall -g -c lab_7.cpp
-
-unittest: lab_7_unit_test.cpp
-	g++ -Wall -g -c lab_7_unit_test.cpp
+unittest8: lab_8_unit_test.cpp
+	g++ -Wall -g -c lab_8_unit_test.cpp
 
 clean:
 	rm *.o *test

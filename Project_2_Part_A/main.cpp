@@ -14,6 +14,17 @@
 
 using namespace std;
 
+/* class BoardGame
+ * 
+ * private
+      vector<string> gameboard -  A vector of strings that holds the gameboard data one horizontal line at a time
+ * public
+      constructBoard(string gameboard_info) - contructs the board game by taking in a string (the current line of the boardgame text file)
+        and then adds it to the vector of strings that comprise the gameboard vector.
+      string checkPosition(char x, int y) - takes in a position letter and number (e.g A1) then checks the position to see whether the guess resulted in a hit, miss or an error (e.g. outside the range)
+      printBoard - prints the board
+      
+ */
 class BoardGame {
   private:
     vector<string> gameboard;
@@ -23,10 +34,24 @@ class BoardGame {
       
     }
     
+    /* constructBoard
+    * contructs the board game by taking in a string (the current line of the boardgame text file)
+    * and then adds it to the vector of strings that comprise the gameboard vector.
+    * @param string gameboard_info - the string that is taken from the boardgame text file
+    * @returns nothing
+    */
+    
     void constructBoard(string gameboard_info) {
       gameboard.push_back(gameboard_info);
     }
     
+    
+    /* checkPosition
+    * takes in a position letter and number (e.g A1) then checks the position to see whether the guess resulted in a hit, miss or an error (e.g. outside the range)
+    * @param char x - holds the letter that the user (or computer) passes to the checkPosition function, that is its guess
+    * @param int y - holds the number that the user (or computer) passes to the checkPosition function, that is its guess
+    * @returns string that says Hit, Miss, or Error depending on the result of the attack
+    */
     string checkPosition(char x, int y) {
       string temp_string = "",
              positionResult = "";
@@ -58,6 +83,12 @@ class BoardGame {
       return positionResult;
     }  
     
+    
+    /* printBoard
+    * iterates through the board game vector and prints out each individual line
+    * @param none
+    * @returns nothing
+    */
     void printBoard () {
       char array_of_letters[10] = {'A','B','C','D','E','F','G','H','I','J'};
       cout << endl << "  0 1 2 3 4 5 6 7 8 9";
@@ -65,7 +96,11 @@ class BoardGame {
         cout << endl << array_of_letters[i] << " " << gameboard.at(i);
       }
     }
-    
+    /* printTrackingBoard
+    * iterates through the board game vector and prints out each individual line 
+    * @param none
+    * @returns nothing
+    */
     void printTrackingBoard () {
       char array_of_letters[10] = {'A','B','C','D','E','F','G','H','I','J'};
       string temp_string = "";
