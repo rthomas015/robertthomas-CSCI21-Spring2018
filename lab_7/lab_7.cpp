@@ -62,3 +62,42 @@ bool ProcessFile(string filename) {
     input_file.close();
     return success;
 }
+
+/*
+ * Will read through arguments passed to exe file. Perform the following operations on the input values:
+ *   10 -- invoke the function OnTen
+ *   20 -- invoke the function OnTwenty
+ *   30 -- invoke the function OnThirty
+ *   40 -- invoke the function OnForty
+ *   50 -- invoke the function OnFifty
+ *   any other value -- invoke the function OnError
+ * @param argc - number of arguments provided
+ * @param argv - pointer to an array of argument strings
+ */
+ 
+void ProcessArguments(int argc, char* argv[]) {
+        string temp_string = "";
+        
+        for (int i=1;i<argc;i++) {   
+            temp_string = argv[i];
+            
+            if (temp_string == "10") {
+                OnTen();
+            }
+            else if (temp_string == "20") {
+                OnTwenty();
+            }
+            else if (temp_string == "30") {
+                OnThirty();
+            }
+            else if (temp_string == "40") {
+                OnForty();
+            }
+            else if (temp_string == "50") {
+                OnFifty();
+            }
+            else {
+                OnError();
+            }
+        }
+}
