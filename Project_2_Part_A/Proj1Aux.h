@@ -28,4 +28,11 @@ void gameIntroduction();
 //@param BoardGame file
 void readGameboard(BoardGame &Map);
 
+//attackCoordinates()
+//Test User Input for correct formatting (so program doesn't crash)
+//Would logically be a player function, but contains input and output
+//@param none
+//returns properly formatted coordinates in the form of a string
+string attackCoordinates ();
+
 #endif

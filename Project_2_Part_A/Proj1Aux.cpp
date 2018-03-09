@@ -1,4 +1,4 @@
-//holds all the non-class functions definitions
+//holds all the non-class function definitions
 
 #include "Proj1Aux.h"
 
@@ -26,10 +26,9 @@ void readGameboard (BoardGame &Map) {
            gameboard_info = "";
            
     cout << "Please choose a file that holds map data for the game: ";
-    //cin >> file_name;
+    getline(cin,file_name);
     ifstream boardgame_file;
-    //boardgame_file.open(file_name.c_str());
-    boardgame_file.open("defaultmap.txt");
+    boardgame_file.open(file_name.c_str());
       
       //test if boardgame file is open correctly
       while (!boardgame_file.is_open()) {
@@ -44,4 +43,21 @@ void readGameboard (BoardGame &Map) {
       }
       
     boardgame_file.close();
+}
+
+//attackCoordinates()
+//Test User Input for correct formatting (so program doesn't crash)
+//Would logically be a player function, but contains input and output
+string attackCoordinates () {
+      string input_str = "";
+      
+      getline(cin, input_str);
+      
+      while(input_str.length() != 3) {
+        input_str = "";
+        cout << endl << "Input not recognized" << endl << "Where would you like to attack? (row column) (ex: A 1) ";
+        getline(cin, input_str);
+      }
+
+    return input_str;
 }

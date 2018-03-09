@@ -23,10 +23,10 @@ using namespace std;
 int main () {
     BoardGame GameMap;
     Human Human_Player;
-    vector<string> gameboard;
-    string temp_string = "";
-    char x;
-    int y = 0;
+    string temp_string = "",
+           input_str = "";
+    char letter;
+    int number = 0;
   
     //Game Introduction
     gameIntroduction();
@@ -35,20 +35,26 @@ int main () {
     readGameboard(GameMap);
     
     //main game loop
+    //This will have to be changed/altered in Part B and Part C to include the computer opponent
+    //And to test a win or loss condition that includes the computer opponent
     while (Human_Player.getShipSectionsLeft() != 0) {
       GameMap.printBoard();
       cout << endl << "Where would you like to attack? (row column) (ex: A 1) ";
-      cin >> x;
-      cin >> y;
+      input_str = attackCoordinates();
       
-      temp_string = GameMap.checkPosition(x,y);
+      letter = input_str[0];
+      number = input_str[2] - 48;
+      temp_string = GameMap.checkPosition(letter,number);
       
       while (temp_string == "Error") {
         cout << "Invalid entry please try again: ";
-        cin >> x;
-        cin >> y;
-        temp_string = GameMap.checkPosition(x,y);
+        input_str = attackCoordinates();
+      
+        letter = input_str[0];
+        number = input_str[2] - 48;
+        temp_string = GameMap.checkPosition(letter,number);
       }
+      
       if (temp_string == "Hit") {
         cout << "You have hit a ship!";
         Human_Player.setShipSectionsLeft(Human_Player.getShipSectionsLeft() - 1);

@@ -17,7 +17,8 @@
 
     //Constructor
     BoardGame::BoardGame() {
-      
+      //sets gameboard to empty string
+      gameboard.push_back("   ");
     }
     
     /* constructBoard
