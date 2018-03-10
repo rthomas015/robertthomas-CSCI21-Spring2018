@@ -10,7 +10,7 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
-#include "boardgame.h"
+#include "GameBoard.h"
 #include "player.h"
 #include "computer.h"
 #include "human.h"
@@ -26,7 +26,7 @@ void gameIntroduction();
 //This function will request the user input a gameboard file (right now its disabled so we can test the program easier) it will then test to see if the
 //file is correct, if it is not it will prompt for another file. The file will then recursively input the information into the boardgame object.
 //@param BoardGame file
-void readGameboard(BoardGame &Map);
+void readGameboard(GameBoard &Map);
 
 //attackCoordinates()
 //Test User Input for correct formatting (so program doesn't crash)

@@ -19,30 +19,32 @@ void gameIntroduction() {
 
 //Read in Gameboard
 //This function will request the user input a gameboard file (right now its disabled so we can test the program easier) it will then test to see if the
-//file is correct, if it is not it will prompt for another file. The file will then recursively input the information into the boardgame object.
-//@param none
-void readGameboard (BoardGame &Map) {
+//file is correct, if it is not it will prompt for another file. The file will then recursively input the information into the GameBoard object.
+//@param a GameBoard object
+void readGameboard (GameBoard &Map) {
     string file_name = "defaultmap.txt",
            gameboard_info = "";
            
     cout << "Please choose a file that holds map data for the game: ";
     getline(cin,file_name);
-    ifstream boardgame_file;
-    boardgame_file.open(file_name.c_str());
+    ifstream GameBoard_file;
+    GameBoard_file.open(file_name.c_str());
       
-      //test if boardgame file is open correctly
-      while (!boardgame_file.is_open()) {
-        cout << endl << "An error occurred, please input another boardgame file: ";
+      //test if GameBoard file is open correctly
+      while (!GameBoard_file.is_open()) {
+        cout << endl << "An error occurred, please input another GameBoard file: ";
         cin >> file_name;
-        boardgame_file.open(file_name.c_str());
+        GameBoard_file.open(file_name.c_str());
       }
       
-      while (!boardgame_file.eof()) {
-        getline(boardgame_file,gameboard_info);
+      Map.clearBoard();
+      
+      while (!GameBoard_file.eof()) {
+        getline(GameBoard_file,gameboard_info);
         Map.constructBoard(gameboard_info);
       }
       
-    boardgame_file.close();
+    GameBoard_file.close();
 }
 
 //attackCoordinates()

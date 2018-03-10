@@ -26,7 +26,7 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
-#include "boardgame.h"
+#include "GameBoard.h"
 
 using namespace std;
 
