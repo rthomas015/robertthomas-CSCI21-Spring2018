@@ -1,9 +1,6 @@
-//Computer Class
-/*
+/* Computer Class
  * The class will hold the computer player/opponent section of the Battleship game
  *
- * Not defined yet
- * PersonalMap_ = holds information on where the player put its own ships
 */
 
 #ifndef computer_h

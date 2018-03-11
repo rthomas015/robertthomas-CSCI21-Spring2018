@@ -23,7 +23,6 @@ using namespace std;
 
 int main () {
     GameBoard GameMap;
-    GameBoard TestMap;
     Human Human_Player;
     Computer Computer_Player;
     string temp_string = "",
@@ -34,8 +33,9 @@ int main () {
     //Game Introduction
     gameIntroduction();
     
-    //Read in Gameboard
+    //Read in Gameboard from file into GameBoard object
     readGameboard(GameMap);
+    
     //Set the extracted GameMap to the Computer's GameMap
     //Note: Human_Player will just have a default map of no ships
     Computer_Player.setPersonalMap(GameMap);
@@ -58,7 +58,7 @@ int main () {
       
         letter = input_str[0];
         number = input_str[2] - 48;
-        temp_string = GameMap.checkPosition(letter,number);
+        temp_string = Computer_Player.checkPosition(letter,number);
       }
       
       if (temp_string == "Hit") {
