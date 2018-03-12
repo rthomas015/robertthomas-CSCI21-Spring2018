@@ -1,7 +1,7 @@
 #include "computer.h"
 
 Computer::Computer () {
-    
+    //runs Gameboard constructor and sets the map to empty
 }
 
 void Computer::setPersonalMap (GameBoard Map) {

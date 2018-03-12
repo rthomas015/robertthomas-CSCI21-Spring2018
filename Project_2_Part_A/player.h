@@ -1,20 +1,7 @@
-//Player Class
-/*  private: 
- *      shipsections_left_ = integer that holds the number of ship sections the player has remaining (defaults to start at 15, but would also need to match up with the map)
- *
- *  public:
- *      player() - constructor
- *      
- *      virtual void placeShips () - a function to place ships on the board, this may be eventually implemented, but is currently not because the board
- *          supplies the locations of the ships. Its virtual because it will change depending on if its a human or a computer
- *
- *      setShipSectionsLeft - changes the shipsections_left_ variable to what ever value is supplied as an argument 
- *           @param int x - the number to set shipsections_left_
- *      
- *      getShipSectionsLeft - returns whatever value is stored in shipsections_left_ variable
- *          @param none
- *
-*/
+/*  Player Class 
+ *  Base class of the Player (computer or human), holds the shipsections_left_ variable which is the number of
+    ship sections left for the player, along with functions needed for both players
+ */
 
 
 #ifndef player_h
@@ -44,15 +31,45 @@ class Player {
   //@param none
   virtual void placeShips ();
   
+  //printTrackingBoardforOpponent  - pure virtual
+  /* this function prints the tracking board for the opponent to use (shows only hits and misses)
+   *@param - none
+   *@return - none
+   */
+  virtual void printTrackingBoardforOpponent () = 0;
+  
+  //setPersonalMap - pure virtual
+  /*sets the personal map (the player's board with ships) based on GameBoard object passed to it
+   *@param - GameBoard object with gameboard data
+   *@return - none
+   */
+  virtual void setPersonalMap (GameBoard Map) = 0;
+  
+  //getPersonalMap  - pure virtual
+  /*returns the personal map for the player based on the player object's GameBoard data
+   *@param - none
+   *@return - returns the vector of strings that holds map data for the player's personal map
+   */
+  virtual const vector<string>& getPersonalMap () = 0;
+  
+  //checkPosition  - pure virtual
+  /* Returns whether or not the coorindate values provided constitutes a hit, miss or error on the player's personal Map
+   *@param - char x (letter or y value for board)
+   *@param - int y (letter or x value for board)
+   *@return - a string: hit, miss, or error - depending on result of the coordinates
+   */  
+  virtual string checkPosition(char x, int y) = 0;
   
   //setShipSectionsLeft
   //changes the shipsections_left_ variable to what ever value is supplied as an argument
   //@param int x - the number to set shipsections_left_
+  //@return - none
   void setShipSectionsLeft(int x);
   
   //getShipSectionsLeft
   //returns whatever value is stored in shipsections_left_ variable
   //@param none
+  //@return - value of ShipSectionsLeft_
   const int getShipSectionsLeft ();
   
 };

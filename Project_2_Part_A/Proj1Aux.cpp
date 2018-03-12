@@ -50,6 +50,7 @@ void readGameboard (GameBoard &Map) {
 //attackCoordinates()
 //Test User Input for correct formatting (so program doesn't crash)
 //Would logically be a player function, but contains input and output
+//Error on ###
 string attackCoordinates () {
       string input_str = "";
       

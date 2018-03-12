@@ -2,7 +2,7 @@
 
   //Constructor
   Player::Player () {
-    shipsections_left_ = 1;
+    shipsections_left_ = 17;
   }
   
   void Player::placeShips (){
