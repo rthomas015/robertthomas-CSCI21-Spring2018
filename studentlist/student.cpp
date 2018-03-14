@@ -1,30 +1,33 @@
 #include <string>
 #include <iostream>
-#include "node.h"
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
 /*Class Student: 
     - first name (string)
     - last name (string)
-    - ID number
 */
 
 class Student {
   private:
     string firstName_,  
-            secondName_,
-            IDNumber_;
+            secondName_;
+    
     public:
+    //Constructor
     Student(){
         firstName_ = "";
         secondName_ = "";
-        IDNumber_ = "";
     }
     
-    Student () {
-        
+    //Overloaded Constructor
+    Student(string firstname, string secondname) {
+        firstName_ = firstname;
+        secondName_ = secondname;
     }
+    
     //Getters
     const string getfirstName() {
         return firstName_;
@@ -34,9 +37,6 @@ class Student {
         return secondName_;
     }
     
-    const string getIDNumber() {
-        return IDNumber_;
-    }
     
     //Setters
     void setfirstName(string firstName) {
@@ -45,10 +45,6 @@ class Student {
     
     void setsecondName(string secondName) {
         secondName_ = secondName;
-    }
-    
-    void setIDNumber(string IDNumber) {
-        IDNumber_ = IDNumber;
     }
     
 };
@@ -103,3 +99,17 @@ class Node {
         }
         
 };
+
+int main () {
+    ifstream ifile;
+    ifile.open ("input.txt");
+    string 
+    
+    while (!ifile.eof()) {
+        getline()
+    }
+    
+    ifile.close();
+    
+    return 0;
+}
