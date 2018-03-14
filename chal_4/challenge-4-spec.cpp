@@ -25,7 +25,12 @@ using namespace std;
 		 * @throw std::logic_error("EMPTY QUEUE") if line is empty
 		 */
 		string NightClubLine::getFirstCustomer () throw(logic_error) {
-			return waitingLine.front();
+			if (waitingLine.size() == 0 || waitingLine.empty()) {
+				logic_error("EMPTY QUEUE");
+			}
+			else {
+				return waitingLine.front();
+			}
 		}
 
 		/*
@@ -34,7 +39,12 @@ using namespace std;
 		 * @throw std::logic_error("EMPTY QUEUE") if line is empty
 		 */
 		string NightClubLine::getLastCustomer () throw(logic_error) {
-			return waitingLine.back();
+			if (waitingLine.size() == 0 || waitingLine.empty()) {
+				logic_error("EMPTY QUEUE");
+			}
+			else {
+				return waitingLine.back();
+			}
 		}
 
 		/*
@@ -43,8 +53,15 @@ using namespace std;
 		 * @throw std::logic_error("EMPTY QUEUE") if line is empty
 		 */
 		string NightClubLine::removeFirstCustomer () throw(logic_error) {
-			string first_cust = waitingLine.front();
-			waitingLine.pop();
+			string first_cust = "";
+			if (waitingLine.size() == 0 || waitingLine.empty()) {
+				logic_error("EMPTY QUEUE");
+			}
+			else {
+				first_cust = waitingLine.front();
+				waitingLine.pop();
+			}
+			return first_cust;
 		}
 
 		/* 
@@ -69,7 +86,7 @@ using namespace std;
 		 * @return true if the line is empty, else false
 		 */
 		bool NightClubLine::isEmpty () {
-			
+			return waitingLine.empty();
 		}
 
 		/*
@@ -115,6 +132,18 @@ using namespace std;
          * @return true if command is recognized and format is valid, else false
 		 */
 		bool NightClubLine::processCommand (string cmd) {
-			
+			if (cmd == "A apple" || cmd == "a apple") {
+				waitingLine.push("apple");
+			}
+			else if (cmd == "C" || cmd == "c") {
+				clearLine();
+			}
+			else if (cmd == "R" || cmd == "r") {
+				waitingLine.pop();
+			}
+			else {
+				return false;
+			}
+		
+			return true;
 		}
-
