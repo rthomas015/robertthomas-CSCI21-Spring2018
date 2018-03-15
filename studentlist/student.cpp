@@ -90,6 +90,7 @@ int main () {
     }
     
     //print unsorted list
+    cout << endl << "Unsorted List: ";
     for (iter = studentList.begin(); iter != studentList.end(); iter++) {
         Student anotherStudent = *iter;
         cout << endl << "Name: " << anotherStudent.getfirstName() << " " << anotherStudent.getsecondName();
@@ -99,6 +100,7 @@ int main () {
     studentList.sort();
     
     //print sorted list
+    cout << endl << endl << "Sorted List (by last name): ";
     for (iter = studentList.begin(); iter != studentList.end(); iter++) {
         Student anotherStudent = *iter;
         cout << endl << "Name: " << anotherStudent.getfirstName() << " " << anotherStudent.getsecondName();
