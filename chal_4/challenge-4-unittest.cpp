@@ -18,9 +18,9 @@ TEST_CASE("NightClubLine functionality") {
 
 		CHECK(ncl.isEmpty() == true);
 		CHECK(ncl.getNumCustomers() == 0);
-		//CHECK_THROWS_AS(ncl.getFirstCustomer(), logic_error);
-		//CHECK_THROWS_AS(ncl.getLastCustomer(), logic_error);
-		//CHECK_THROWS_AS(ncl.removeFirstCustomer(), logic_error);
+		CHECK_THROWS_AS(ncl.getFirstCustomer(), logic_error);
+		CHECK_THROWS_AS(ncl.getLastCustomer(), logic_error);
+		CHECK_THROWS_AS(ncl.removeFirstCustomer(), logic_error);
 	}
 
 	SECTION("command processing") {
@@ -42,6 +42,7 @@ TEST_CASE("NightClubLine functionality") {
 		ncl.addCustomer("apple");
 		CHECK(ncl.processCommand("R") == true);
 	}
+
 	
 	SECTION("manually entered operations/data") {
 		NightClubLine ncl;
@@ -64,6 +65,7 @@ TEST_CASE("NightClubLine functionality") {
 		CHECK(ncl.isEmpty() == true);
 		CHECK(ncl.getNumCustomers() == 0);
 	}
+
 
 	SECTION("file processed operations/data") {
 		NightClubLine ncl;

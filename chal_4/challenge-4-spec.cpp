@@ -26,7 +26,7 @@ using namespace std;
 		 */
 		string NightClubLine::getFirstCustomer () throw(logic_error) {
 			if (waitingLine.size() == 0 || waitingLine.empty()) {
-				logic_error("EMPTY QUEUE");
+				throw logic_error("EMPTY QUEUE");
 			}
 			else {
 				return waitingLine.front();
@@ -40,7 +40,7 @@ using namespace std;
 		 */
 		string NightClubLine::getLastCustomer () throw(logic_error) {
 			if (waitingLine.size() == 0 || waitingLine.empty()) {
-				logic_error("EMPTY QUEUE");
+				throw logic_error("EMPTY QUEUE");
 			}
 			else {
 				return waitingLine.back();
@@ -55,7 +55,7 @@ using namespace std;
 		string NightClubLine::removeFirstCustomer () throw(logic_error) {
 			string first_cust = "";
 			if (waitingLine.size() == 0 || waitingLine.empty()) {
-				logic_error("EMPTY QUEUE");
+				throw logic_error("EMPTY QUEUE");
 			}
 			else {
 				first_cust = waitingLine.front();
@@ -68,9 +68,7 @@ using namespace std;
 		 * Remove all customers from the line.
 		 */
 		void NightClubLine::clearLine () {
-			for (int i=0;i<waitingLine.size();i++) {
-				waitingLine.pop();
-			}
+			waitingLine = queue<string>();
 		}
 
 		/*
@@ -102,14 +100,18 @@ using namespace std;
 			
 			ifile.open(filename.c_str());
 			//test for if it correctly opened
-			
-			
+			if (!ifile.is_open()) {
+				ifile.close();
+	        	return false;
+    		}
 			while (!ifile.eof()) {
 				getline(ifile,place_holder);
-				waitingLine.push(place_holder);
+				processCommand(place_holder);
 			}
 			
 			ifile.close();
+			
+			return true;
 		}
 
 		/*
@@ -132,18 +134,23 @@ using namespace std;
          * @return true if command is recognized and format is valid, else false
 		 */
 		bool NightClubLine::processCommand (string cmd) {
-			if (cmd == "A apple" || cmd == "a apple") {
-				waitingLine.push("apple");
-			}
-			else if (cmd == "C" || cmd == "c") {
-				clearLine();
-			}
-			else if (cmd == "R" || cmd == "r") {
-				waitingLine.pop();
+			if (cmd.size() > 0 ) {
+				if ((cmd.at(0) == 'A' || cmd.at(0) == 'a') && cmd.size() > 3) {
+					string temp_string = cmd.substr(2,cmd.size()-1);
+					waitingLine.push(temp_string);
+				}
+				else if (cmd.at(0) == 'C' || cmd.at(0) == 'c') {
+					clearLine();
+				}
+				else if (cmd.at(0) == 'R' || cmd.at(0) == 'r') {
+					waitingLine.pop();
+				}
+				else {
+					return false;
+				}
 			}
 			else {
 				return false;
 			}
-		
 			return true;
 		}
