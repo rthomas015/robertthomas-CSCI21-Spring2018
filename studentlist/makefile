@@ -1,14 +1,10 @@
 #creates the executable from both the object files
-labtest: test.o node.o 
-	g++ -Wall -g -o test test.o node.o
-
-#creates the lab2 object file
-lab: node.cpp  
-	g++ -Wall -g -c node.cpp
+labtest: student.o 
+	g++ -std=c++11 -Wall -g -o test student.o
 
 # creates the unit test object file
-unittest: test.cpp 
-	g++ -Wall -g -c test.cpp	
+unittest: student.cpp 
+	g++ -Wall -g -std=c++11 -c student.cpp	
 
 #cleans up old .o files	
 clean:

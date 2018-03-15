@@ -2,13 +2,9 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <list>
 
 using namespace std;
-
-/*Class Student: 
-    - first name (string)
-    - last name (string)
-*/
 
 class Student {
   private:
@@ -47,68 +43,68 @@ class Student {
         secondName_ = secondName;
     }
     
+    //Destructor
+    ~Student() {
+        //not needed
+    }
+
+    //overloaded operator (add student)
+    void operator<<(Student addStudent) {
+        //dont really understand as the list is a group of objects
+        //this makes it sound like the object is supposed to have a list instead
+    }
+    
+    //used for std list sort command
+    bool operator<(const Student& student_2){
+        //second argument is implict this
+        return (secondName_ < student_2.secondName_);
+    }
 };
 
-/*Class Node:
-    - pointer to next student object
-
-    //functions
-    constructor
-        thing
-        next = null
-    constructor 
-    
-    destructor
-    
-    
-    insert
-    delete
-    getNext
-    setNext
-    getThing
-    setThing
-*/
-
-class Node {
-    private:
-        Student Student_;
-        Node* nextNode_;
-        
-    public:
-        //Constructor
-        Node() {
-            nextNode_ = nullptr;
-        }
-        
-        //Destructor
-        ~Node (){
-            delete nextNode_;
-        }
-        
-        //Insert
-        void setNext () {
-            nextNode_++;
-        }
-        
-        const Student getStudent() {
-            return Student_;
-        }
-        
-        void setStudent(Student newStudent) {
-            
-        }
-        
+//struct to hold data for currStudent
+struct currStudent {
+    string firstName;
+    string secondName;
 };
 
 int main () {
     ifstream ifile;
     ifile.open ("input.txt");
-    string 
+    string place_holder = "";
+    stringstream ss;
+    list<Student> studentList;
+    list<Student>::iterator iter;
     
+    //read file input
     while (!ifile.eof()) {
-        getline()
+        currStudent currentStudent;
+        getline(ifile,place_holder);
+        
+        ss.clear();
+        ss << place_holder;
+        ss >> currentStudent.firstName;
+        ss >> currentStudent.secondName;
+        
+        Student anotherStudent(currentStudent.firstName,currentStudent.secondName);
+        studentList.push_back(anotherStudent);
     }
     
+    //print unsorted list
+    for (iter = studentList.begin(); iter != studentList.end(); iter++) {
+        Student anotherStudent = *iter;
+        cout << endl << "Name: " << anotherStudent.getfirstName() << " " << anotherStudent.getsecondName();
+    }
+    
+    //sort list by last name
+    studentList.sort();
+    
+    //print sorted list
+    for (iter = studentList.begin(); iter != studentList.end(); iter++) {
+        Student anotherStudent = *iter;
+        cout << endl << "Name: " << anotherStudent.getfirstName() << " " << anotherStudent.getsecondName();
+    }
+    
+    //close file
     ifile.close();
     
     return 0;
