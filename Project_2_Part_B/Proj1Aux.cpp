@@ -9,24 +9,17 @@ using namespace std;
 //@param none
 void gameIntroduction() {
       cout << "Battleship" << endl
-           << "This application tests the Human component of the game and ensures that boards can be read in from a file." << endl;
-           
-           //Description to add in final version
-           //First input a file name to load map data. Then place your five ships on the map. Then alternate
-           //turns with computer selecting prositions on the map. Each turn results in a hit or a miss.
-           //The game ends when on players ships are all sunk.
+           << "Rules: you alternate turns with a computer opponent, choosing locations to attack. Each turn results in a hit or a miss. The game ends when one of the player's ships are all sunk." << endl;
 }           
 
 //Read in Gameboard
-//This function will request the user input a gameboard file (right now its disabled so we can test the program easier) it will then test to see if the
+//This function will request the user input a gameboard file it will then test to see if the
 //file is correct, if it is not it will prompt for another file. The file will then recursively input the information into the GameBoard object.
 //@param a GameBoard object
-void readGameboard (GameBoard &Map) {
-    string file_name = "defaultmap.txt",
+void readGameboard (GameBoard &Map, string filename) {
+    string file_name = filename,
            gameboard_info = "";
            
-    cout << "Please choose a file that holds map data for the game: ";
-    getline(cin,file_name);
     ifstream GameBoard_file;
     GameBoard_file.open(file_name.c_str());
       

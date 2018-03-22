@@ -30,7 +30,8 @@ int main (int argc, char* argv[]) {
     string temp_string = "",
            input_str = "",
            filename_computer = "",
-           filename_human = "";
+           filename_human = "",
+           first_turn = "";
     char letter;
     int number = 0;
   
@@ -38,34 +39,51 @@ int main (int argc, char* argv[]) {
     srand(time(0));
     
     int random_num = 0;
-    random_num = (rand() % 2) + 1;
+    random_num = (rand() % 2);
+
     
     //Command Line Arguments
-    if (argc == 3) {
+    if (argc >= 3) {
+      //filename plus two arguments or more
       filename_human = argv[1];
       filename_computer = argv[2];
-    }
-    else if (argc == 4) {
-      
+      if (argc >= 4) {
+        //filename plus three arguments
+        first_turn = argv[3];
+      }
+      else {
+        //select random player
+        if (random_num == 0) {
+          first_turn = "HUMAN";
+        }
+        else if (random_num == 1) {
+          first_turn = "COMPUTER";
+        }
+      }
     }
     else {
       cout << "Invalid number of arguments - terminating program.";
       return 1;
     }
+    
     //Game Introduction
     gameIntroduction();
     
     //Read in Gameboard from file into GameBoard object
-    readGameboard(GameMap);
-    
+    readGameboard(GameMap,filename_computer);
     //Set the extracted GameMap to the Computer's GameMap
-    //Note: Human_Player will just have a default map of no ships
     Computer_Player.setPersonalMap(GameMap);
+    GameMap.clearBoard();
+    
+    readGameboard(GameMap,filename_human);
+    //Set the extracted GameMap to the Humans's GameMap
+    Human_Player.setPersonalMap(GameMap);
+  
     
     //main game loop
     //This will have to be changed/altered in Part B and Part C to include human and computer move sections
     //And to test a win or loss condition that includes both players (i.e. which one is at 0 ships first loses)
-    while (Computer_Player.getShipSectionsLeft() != 0) {
+    while ((Computer_Player.getShipSectionsLeft() != 0) || (Human_Player.getShipSectionsLeft() !=0)) {
       Computer_Player.printTrackingBoardforOpponent();
       cout << endl << "Where would you like to attack? (row column) (ex: A 1) ";
       input_str = attackCoordinates();
