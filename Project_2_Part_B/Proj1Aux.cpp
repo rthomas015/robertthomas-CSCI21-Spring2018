@@ -57,3 +57,34 @@ string attackCoordinates () {
 
     return input_str;
 }
+
+
+//Human Turn 
+void humanTurn(Computer &Comp) {
+      char letter;
+      string input_str = "",
+             temp_string = "";
+      int number = 0;
+      
+      Comp.printTrackingBoardforOpponent();
+      cout << endl << "Where would you like to attack? (row column) (ex: A 1) ";
+      input_str = attackCoordinates();
+      
+      letter = input_str[0];
+      number = input_str[2] - 48;
+      temp_string = Comp.checkPosition(letter,number);
+      
+      while (temp_string == "Error") {
+        cout << "Invalid entry please try again: ";
+        input_str = attackCoordinates();
+      
+        letter = input_str[0];
+        number = input_str[2] - 48;
+        temp_string = Comp.checkPosition(letter,number);
+      }
+      
+      if (temp_string == "Hit") {
+        cout << "You have hit a ship!";
+        Comp.setShipSectionsLeft(Comp.getShipSectionsLeft() - 1);
+      }
+}

@@ -32,9 +32,7 @@ int main (int argc, char* argv[]) {
            filename_computer = "",
            filename_human = "",
            first_turn = "";
-    char letter;
-    int number = 0;
-  
+
     //random generator
     srand(time(0));
     
@@ -69,44 +67,31 @@ int main (int argc, char* argv[]) {
     //Game Introduction
     gameIntroduction();
     
-    //Read in Gameboard from file into GameBoard object
+    //Read in Gameboard from computer player file into GameBoard object
     readGameboard(GameMap,filename_computer);
     //Set the extracted GameMap to the Computer's GameMap
     Computer_Player.setPersonalMap(GameMap);
     GameMap.clearBoard();
     
+    //Read in Gameboard from human player file into GameBoard object
     readGameboard(GameMap,filename_human);
     //Set the extracted GameMap to the Humans's GameMap
     Human_Player.setPersonalMap(GameMap);
   
     
     //main game loop
-    //This will have to be changed/altered in Part B and Part C to include human and computer move sections
-    //And to test a win or loss condition that includes both players (i.e. which one is at 0 ships first loses)
-    while ((Computer_Player.getShipSectionsLeft() != 0) || (Human_Player.getShipSectionsLeft() !=0)) {
-      Computer_Player.printTrackingBoardforOpponent();
-      cout << endl << "Where would you like to attack? (row column) (ex: A 1) ";
-      input_str = attackCoordinates();
-      
-      letter = input_str[0];
-      number = input_str[2] - 48;
-      temp_string = Computer_Player.checkPosition(letter,number);
-      
-      while (temp_string == "Error") {
-        cout << "Invalid entry please try again: ";
-        input_str = attackCoordinates();
-      
-        letter = input_str[0];
-        number = input_str[2] - 48;
-        temp_string = Computer_Player.checkPosition(letter,number);
-      }
-      
-      if (temp_string == "Hit") {
-        cout << "You have hit a ship!";
-        Computer_Player.setShipSectionsLeft(Computer_Player.getShipSectionsLeft() - 1);
-      }
-    } //<-- end game loop
-
+    if (first_turn == "HUMAN") {
+      while ((Computer_Player.getShipSectionsLeft() != 0) || (Human_Player.getShipSectionsLeft() !=0)) {
+        humanTurn(Computer_Player);
+        //add comp
+      } 
+    else if (first_turn == "COMPUTER") {
+      while ((Computer_Player.getShipSectionsLeft() != 0) || (Human_Player.getShipSectionsLeft() !=0)) {
+        //add comp
+        humanTurn(Computer_Player);
+      } 
+    }
+    //<-- end game loop
     
     cout << endl << "Congratulations, you have won the game!";
     

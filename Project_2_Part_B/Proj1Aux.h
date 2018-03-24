@@ -35,4 +35,6 @@ void readGameboard(GameBoard &Map, string filename);
 //returns properly formatted coordinates in the form of a string
 string attackCoordinates ();
 
+void humanTurn(Computer &Comp);
+
 #endif

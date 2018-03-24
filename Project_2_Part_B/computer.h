@@ -53,6 +53,7 @@ class Computer : public Player {
    */  
     string checkPosition(char x, int y);
 
+    //attackAPosition
 };
 
 #endif
