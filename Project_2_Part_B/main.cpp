@@ -3,7 +3,7 @@
   Date: 3/5/2018 
   Description: Write a program that takes in information from a file (user specified) and stores it as a map for a game of Battleship. The program
   should have a base class (Player) and two classes derived from it (Computer) and (Human). For Part A only the Human player needs to be completed.
-  13
+  3
 */
 
 #include <iostream>
@@ -79,15 +79,16 @@ int main (int argc, char* argv[]) {
     Human_Player.setPersonalMap(GameMap);
   
     
-    //main game loop
+    //<-- main game loop
     if (first_turn == "HUMAN") {
       while ((Computer_Player.getShipSectionsLeft() != 0) || (Human_Player.getShipSectionsLeft() !=0)) {
         humanTurn(Computer_Player);
-        //add comp
+        cout << endl << "Computer player: " << Computer_Player.attackPosition(Human_Player);
       } 
+    }
     else if (first_turn == "COMPUTER") {
       while ((Computer_Player.getShipSectionsLeft() != 0) || (Human_Player.getShipSectionsLeft() !=0)) {
-        //add comp
+        cout << endl << "Computer player: " << Computer_Player.attackPosition(Human_Player);
         humanTurn(Computer_Player);
       } 
     }

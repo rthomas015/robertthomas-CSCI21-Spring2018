@@ -1,0 +1,9 @@
+include catch
+
+Test Plan ("Descriptive Name") {
+	Section ("descriptive name #1-4") {
+		CHECK (functionName(input) == "correct answer";
+		O.pop() //do something 
+		CHECK (head==Null); //test something
+	}
+}

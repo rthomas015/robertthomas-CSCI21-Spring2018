@@ -6,6 +6,7 @@
 #ifndef computer_h
 #define computer_h
 
+#include <queue>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -13,12 +14,16 @@
 #include <sstream>
 #include <algorithm>
 #include "player.h"
+#include "human.h"
 
 using namespace std;
 
 class Computer : public Player {
   private:
     GameBoard PersonalMap_;
+    string LastAttack_;
+    queue<string> attackQueue;
+    
   public:
     //Constructor
     Computer();
@@ -53,7 +58,13 @@ class Computer : public Player {
    */  
     string checkPosition(char x, int y);
 
-    //attackAPosition
+    //attackPosition
+    /*Determines a position to attack and then proceeds to test that attack position
+    *@param - human player object that will be attacked
+    *@return - returns the value from checkPosition.
+    */
+    string attackPosition (Human &humanplayer);
+  
 };
 
 #endif
