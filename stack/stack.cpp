@@ -1,3 +1,10 @@
+/*Stack
+  By: Robert Thomas
+  Date: 3/27/2018
+  Description: This project will create a Stack, input the information from a file into it
+  and then print it out one by one
+*/
+
 #include <iostream>
 #include <string>
 #include <fstream>
