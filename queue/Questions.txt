@@ -1,0 +1,16 @@
+Question #15.1.1: Suppose the words in the sentence "Madam, I'm Adam." were pushed one after the other onto 
+the same stack, and then they were printed as they were popped off. What would be printed?
+    Adam. I'm Madam,
+ 
+    
+Question #15.1.2: What will the (eventual) program do in general to any sequence of words?
+    Reverse them word by word
+  
+    
+Question #15.1.3: How closely did your prediction match the actual outcome?
+    Matched exactly (except I used line breaks).
+    
+
+Question #15.1.4: How does LIFO explain the behavior you see from your program?
+
+    The last information into the queue was the first information output from it.
