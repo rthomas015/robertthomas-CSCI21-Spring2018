@@ -1,0 +1,36 @@
+Question #15.2.1: Suppose the words in the sentence "Madam, I'm Adam." were pushed one after the other
+onto the same queue, and then they were printed as they were popped off. What would be printed?
+    Madam, I'm Adam.
+ 
+    
+Question #15.1.2: What will the (eventual) program do in general to any sequence of words?
+    Print each one as they are input into the queue (so basically print out the sentence given word by word).
+  
+
+Question #15.2.3: What is the behavior of this program?
+    To take in information (a string) and output each word recursively in the order they were received.
+
+
+Question #15.2.4: What are the objects needed in the program?
+    ifstream, cin, queue, string
+
+
+Question #15.2.5: What are the operations needed in the program? Similar to Experiment #1, you can ignore the old, familiar input/output operations.
+    file input, looping through the file, inputting information into the queue,  looping through the queue, console output,
+
+
+Question #15.2.6: What is the algorithm for this program?
+    ...skipping file opening etc...
+    while (haven't reached end of input file)
+        read in from file
+        push into queue
+    loop
+    
+    while (queue is not empty)
+        output first value in queue
+        delete first value in queue
+    loop
+
+Question #15.2.8: How does FIFO explain the behavior you see from your program?
+
+    The first information into the queue was the first information output from it.
