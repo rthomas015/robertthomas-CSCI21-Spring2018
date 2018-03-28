@@ -1,0 +1,80 @@
+   // Accept and use 2 command line arguments, in the following order
+   //     The first is the name of the text file that has the human�s ship configuration and stored in it
+   //     The second is the name of the text file for the computer�s ships
+   //     Accept a third, optional command line argument that must have one of the two following values (capitalization must be exact):
+   //     HUMAN � indicates the human player will go first
+   //     COMPUTER � indicates the computer player will go first
+   //     If no argument is supplied, then a random selection is made as to who will play first
+
+	add int argc, char* argv[] //to main    
+	
+	if argc == 0
+		randomly select who will play first and assign value to first_turn
+	if argc == 3
+		open first text file 
+		   if file opens
+			set it to human ship configuration
+		close first text file
+
+		open second text file
+		   if file opens
+ 			set it to computer's ship configuration
+		close second text file
+
+	if argc == 4
+		do everything from argc==2
+		if argv[2] == "HUMAN" 
+			//player human goes first
+			first_turn = 0;
+		if argv[2] == "COMPUTER"
+			//computer player goes first
+			first_turn = 1;
+		else
+			there was an error, randomly select
+
+	//Game Play Updates
+        //Print the current player�s tracking board
+
+	ComputerPlayer.printOpponentTrackingBoard(); // **already implemented from previous Project 2 Part A**
+
+	//Let a player take a turn, repeat request for a board position until a valid position is given by the player
+	//**Already implemented for human player**
+	if first_turn == 0
+	   human.selectAttackCoordinates();
+	if first_turn == 1
+	   computer.selectAttackCoordinates();
+	
+	//computer.selectAttackCoordinates() not yet defined in program
+	//select a random position at first to make sure something basic can be created first	
+	  string computer::selectAttackCoordinates() {
+		//Randomly select a letter between A-J
+		   char letter = rand() between A-J
+		//Randomly select a number between 0-9
+		   int number = rand() between 0-9
+			
+		   string result = checkGameMap(letter, number);
+		   coordinate_string = letter + " " number + " Result: " + result;
+
+		while (result == "Error") {
+		   //select a new letter and number due to issue
+		  //Randomly select a letter between A-J
+		   char letter = rand() between A-J
+		  //Randomly select a number between 0-9
+		   int number = rand() between 0-9
+		   string result = checkGameMap(letter, number);
+		   coordinate_string = letter + " " number + " Result: " + result;
+		}
+		return coordinate_string;
+	   }
+
+
+        //Report which square was attacked
+	
+	   cout << "This square was attacked " << coordinate_string;
+
+        //Report the result (whether it was a hit or miss) to the human player (for both players)
+        
+	//Record the result
+	//**Already implemented in code from Project 2 Part A based on gameboard class**
+
+	//Report who the winner of the game is
