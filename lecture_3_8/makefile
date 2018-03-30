@@ -2,10 +2,6 @@
 labtest: node.o test.o stack.o
 	g++ -Wall -g -o test node.o test.o stack.o
 
-# creates the unit test object file
-stack: stack.cpp 
-	g++ -Wall -g -c stack.cpp	
-
 #creates the lab2 object file
 lab: node.cpp 
 	g++ -Wall -g -c node.cpp
