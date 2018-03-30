@@ -90,7 +90,7 @@ TEST_CASE("Testing Pointers") {
 TEST_CASE ("Test Stack") {
   //Node* head = NULL;
   //Node head;
-  stack testStack; //doesn't work, stack class not defined
+  //stack testStack; //doesn't work, stack class not defined
 
 /*  
 	SECTION ("Start of Stack") {
