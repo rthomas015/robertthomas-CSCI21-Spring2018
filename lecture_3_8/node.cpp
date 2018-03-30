@@ -2,52 +2,40 @@
 #include <iostream>
 #include "node.h"
 
-using namespace std;
-
-/*Class Node:
-    - pointer to next student object
-
-    //functions
-    constructor
-        thing
-        next = null
-    constructor 
-    
-    destructor
-    
-    
-    insert
-    delete
-    getNext
-    setNext
-    getThing
-    setThing
-*/
+//using namespace std;
 
         //Constructor
         Node::Node() {
-            //nextNode_ = nullptr;
-        }
-        
-        Node::Node(string name) {
-            student_ = name;
+            student_ = "";
             nextNode_ = NULL;
         }
+        
+        Node::Node(std::string name) {
+            student_ = name;
+            nextNode_ = NULL;
+        } 
+        
+        Node::Node(std::string name, Node* nextNode) {
+            this->student_ = name;
+            this->nextNode_ = nextNode;
+        }
+        
         //Destructor
         Node::~Node (){
+            //this breaks stuff
             //delete nextNode_;
         }
         
         //getContents
-        const string Node::contents () {
+        std::string Node::contents () const{
             return student_; 
         }
         
-        Node* Node::next_node() {
+        Node* Node::next_node() const {
             return nextNode_;
         }
 
-        void Node::set_contents (string newStudent) {
+        void Node::set_contents (std::string newStudent) {
             student_ = newStudent;
         }
         

@@ -3,11 +3,11 @@
 
 #include <string>
 
-using namespace std;
+//using namespace std;
 
 class Node {
     private:
-        string student_;
+        std::string student_;
         Node* nextNode_;
         
     public:
@@ -17,16 +17,21 @@ class Node {
         //Destructor
         ~Node ();
         
-        Node(string name);
+        Node(std::string name);
         
-        const string contents();
+        Node(std::string name, Node* nextNode);
         
-        Node* next_node();
+        std::string contents() const;
         
-        void set_contents (string newStudent);
+        Node* next_node() const;
+        
+        void set_contents (std::string newStudent);
         
         void set_next_node (Node* nextNode);
        
+        void pop ();
+        
+        int size (Node &head);
 };
 
 #endif

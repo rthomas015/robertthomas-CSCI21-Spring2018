@@ -12,6 +12,7 @@
 // To test for correct header guards
 #include "node.h"
 
+/*
 TEST_CASE("Default Constructor") {
   Node node, node2;
   Node* p_node2 = &node2;
@@ -83,11 +84,39 @@ TEST_CASE("Testing Pointers") {
     CHECK(node2->next_node() == NULL);
   }
 }
+*/
 
-TEST_CASE ("Descriptive Name") {
-	SECTION ("descriptive name #1-4") {
-		CHECK (functionName(input) == "correct answer";
-		O.pop() //do something 
-		CHECK (head==Null); //test something
+
+TEST_CASE ("Test Stack") {
+  //Node* head = NULL;
+  //Node head;
+  stack testStack; //doesn't work, stack class not defined
+
+/*  
+	SECTION ("Start of Stack") {
+		CHECK (testStack.size() == 0);
+		CHECK (testStack.print() == "");
+		testStack.push();            //add something
+		CHECK (head==Next_Node); //test head is pointing
+		CHECK (testStack.size() == 1);
+		CHECK (testStack.print() == "Contents of the Stack");
+		testStack.push();          //add another item
+		CHECK (testStack.size() == 2);
+		testStack.pop();
+		CHECK (testStack.size() == 1);
 	}
+	
+	SECTION ("Middle") {
+		CHECK (head.size(head) == NULL);
+		//O.pop() //do something 
+		//CHECK (head==Null); //test something
+	}
+	
+	SECTION ("End") {
+		CHECK (head.size(head) == NULL);
+		//O.pop() //do something 
+		//CHECK (head==Null); //test something
+	}
+*/
 }
+
