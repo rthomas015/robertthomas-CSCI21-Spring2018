@@ -10,12 +10,12 @@
             nextNode_ = NULL;
         }
         
-        Node::Node(std::string name) {
+        Node::Node(string name) {
             student_ = name;
             nextNode_ = NULL;
         } 
         
-        Node::Node(std::string name, Node* nextNode) {
+        Node::Node(string name, Node* nextNode) {
             this->student_ = name;
             this->nextNode_ = nextNode;
         }
@@ -27,7 +27,7 @@
         }
         
         //getContents
-        std::string Node::contents () const{
+        string Node::contents () const{
             return student_; 
         }
         
@@ -35,7 +35,7 @@
             return nextNode_;
         }
 
-        void Node::set_contents (std::string newStudent) {
+        void Node::set_contents (string newStudent) {
             student_ = newStudent;
         }
         

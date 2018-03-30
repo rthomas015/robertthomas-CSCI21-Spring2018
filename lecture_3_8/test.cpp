@@ -11,8 +11,9 @@
 #include "node.h"
 // To test for correct header guards
 #include "node.h"
+#include "stack.h"
 
-/*
+
 TEST_CASE("Default Constructor") {
   Node node, node2;
   Node* p_node2 = &node2;
@@ -84,39 +85,80 @@ TEST_CASE("Testing Pointers") {
     CHECK(node2->next_node() == NULL);
   }
 }
-*/
 
-
-TEST_CASE ("Test Stack") {
-  //Node* head = NULL;
-  //Node head;
-  //stack testStack; //doesn't work, stack class not defined
-
-/*  
-	SECTION ("Start of Stack") {
-		CHECK (testStack.size() == 0);
-		CHECK (testStack.print() == "");
-		testStack.push();            //add something
-		CHECK (head==Next_Node); //test head is pointing
-		CHECK (testStack.size() == 1);
-		CHECK (testStack.print() == "Contents of the Stack");
-		testStack.push();          //add another item
-		CHECK (testStack.size() == 2);
-		testStack.pop();
-		CHECK (testStack.size() == 1);
-	}
-	
-	SECTION ("Middle") {
-		CHECK (head.size(head) == NULL);
-		//O.pop() //do something 
-		//CHECK (head==Null); //test something
-	}
-	
-	SECTION ("End") {
-		CHECK (head.size(head) == NULL);
-		//O.pop() //do something 
-		//CHECK (head==Null); //test something
-	}
-*/
+TEST_CASE ("Test Stack: Start") {
+  stack testStack;
+  
+  SECTION ("Start of Stack: Initial") {
+    CHECK (testStack.size() == 0);
+    CHECK (testStack.print() == "");
+  }
+  
+  SECTION ("Start of Stack: Add student") {
+    testStack.push("Jane"); //add a student
+    CHECK (testStack.size() == 1);
+    CHECK (testStack.print() == "Jane");
+  } 
+  
+  SECTION ("Start of Stack: Add More students") {
+    testStack.push("Janet");
+    CHECK (testStack.size() == 2);
+    CHECK (testStack.print() == "Jane Janet");
+  }
+  
+  SECTION ("Start of Stack: Delete a Student") {
+    testStack.pop();
+    CHECK (testStack.size() == 1);
+    CHECK (testStack.print() == "Jane");
+  }
+  
+  SECTION ("Start of Stack: Pop Head") {
+    testStack.pop();
+    CHECK (testStack.size() == 0);
+    CHECK (testStack.print() == "");
+  }
 }
 
+TEST_CASE ("Test Stack: Middle") {
+    stack testStack;
+    
+  	SECTION ("Middle of Stack") {
+  	  testStack.push("Jane");
+  	  testStack.push("Billy");
+  	  testStack.push("Steve");
+  	  testStack.push("Brandon");
+  	  testStack.push("Curtis");
+  	  CHECK (testStack.size() == 5);
+      CHECK (testStack.print() == "Jane Billy Steve Brandon Curtis");
+  	}
+		
+		SECTION ("Middle of Stack") {
+  	  testStack.pop();
+  	  testStack.pop();
+  	  testStack.pop();
+  	  CHECK (testStack.size() == 2);
+      CHECK (testStack.print() == "Jane Billy");
+      testStack.pop();
+  	  testStack.pop();
+  	  CHECK (testStack.size() == 0);
+      CHECK (testStack.print() == "");
+  	}
+}
+	
+TEST_CASE ("Test Stack: End") {
+  stack testStack;
+  testStack.push("Jane");
+  testStack.push("Billy");
+  testStack.pop();
+  testStack.pop();
+  
+	SECTION ("End of Stack") {
+		  CHECK (testStack.size() == 0);
+      CHECK (testStack.print() == "");
+      //testing popping more than number in list
+      //maybe different outcome?
+      testStack.pop();
+      CHECK (testStack.size() == 0);
+      CHECK (testStack.print() == "");
+  }
+}
