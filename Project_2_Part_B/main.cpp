@@ -32,7 +32,7 @@ int main (int argc, char* argv[]) {
            filename_computer = "",
            filename_human = "",
            first_turn = "";
-
+    
     //random generator
     srand(time(0));
     
@@ -78,23 +78,28 @@ int main (int argc, char* argv[]) {
     //Set the extracted GameMap to the Humans's GameMap
     Human_Player.setPersonalMap(GameMap);
   
-    
     //<-- main game loop
-    if (first_turn == "HUMAN") {
-      while ((Computer_Player.getShipSectionsLeft() != 0) || (Human_Player.getShipSectionsLeft() !=0)) {
+    if (first_turn == "HUMAN") { //<-- game loop if Human is first turn
+      while ((Computer_Player.getShipSectionsLeft() > 0) && (Human_Player.getShipSectionsLeft() > 0)) {
         humanTurn(Computer_Player);
         cout << endl << "Computer player: " << Computer_Player.attackPosition(Human_Player);
       } 
     }
-    else if (first_turn == "COMPUTER") {
-      while ((Computer_Player.getShipSectionsLeft() != 0) || (Human_Player.getShipSectionsLeft() !=0)) {
+    else if (first_turn == "COMPUTER") { //<-- game loop if Computer is first turn
+      while ((Computer_Player.getShipSectionsLeft() > 0) && (Human_Player.getShipSectionsLeft() > 0)) {
         cout << endl << "Computer player: " << Computer_Player.attackPosition(Human_Player);
         humanTurn(Computer_Player);
-      } 
+      }
     }
     //<-- end game loop
     
-    cout << endl << "Congratulations, you have won the game!";
+    //Give appropriate ending based on if you won or lost
+    if (Computer_Player.getShipSectionsLeft() == 0) {
+      cout << endl << "Congratulations, you have won the game!";
+    }
+    else if (Human_Player.getShipSectionsLeft() == 0) {
+      cout << endl << "You lose!";
+    }
     
     return 0;
 }

@@ -26,7 +26,7 @@ string Computer::attackPosition (Human &humanplayer) {
     vector<string> temp_map;
     string temp_string = "", temp_map_string;
     char x, temp_x;
-    int y = 0, temp_y = 0, place_holder = 0;
+    int y = 0, temp_y = 0;
     
     //come up with a position if last attack was a miss and the queue has not been created
     if (LastAttack_ == "Miss" && attackQueue.size()==0) {
@@ -35,6 +35,7 @@ string Computer::attackPosition (Human &humanplayer) {
         y = (rand() % 10);
         x = (rand() % 10) + 65;
         
+        //cout just for testing
         cout << "Random Guess: " << x << " " << y << endl;
         //per specification doesn't need to test if random pick has been choosen previously
     }
@@ -62,12 +63,14 @@ string Computer::attackPosition (Human &humanplayer) {
             srand(time(0));
             y = (rand() % 10);
             x = (rand() % 10) + 65;
-        
+            
+            //cout just for testing
             cout << "Random Guess from loop: " << x << " " << y << endl;
         }
         
     }
     
+    //cout just for testing
     cout << "Computer Guessed: " << x << " " << y << endl;
     
     //test position
@@ -110,6 +113,10 @@ string Computer::attackPosition (Human &humanplayer) {
             coords << x << " " << temp_y;
             attackQueue.push(coords.str());
         }
+    }
+    
+    if (LastAttack_ == "Hit") {
+        humanplayer.setShipSectionsLeft(humanplayer.getShipSectionsLeft() - 1);
     }
     
     return LastAttack_;

@@ -1,5 +1,5 @@
-project2a: gameboard.o player.o computer.o human.o Proj1Aux.o main.o
-	g++ -Wall -g -o project2a.exe gameboard.o player.o computer.o human.o Proj1Aux.o main.o
+project2b: gameboard.o player.o computer.o human.o Proj1Aux.o main.o
+	g++ -Wall -g -o project2b.exe gameboard.o player.o computer.o human.o Proj1Aux.o main.o
 
 main: main.cpp
 	g++ -Wall -g -c main.cpp
