@@ -15,7 +15,7 @@ class Node {
         Node();
         
         //Destructor
-        ~Node ();
+        //~Node ();
         
         Node(string name);
         
@@ -29,9 +29,6 @@ class Node {
         
         void set_next_node (Node* nextNode);
        
-        void pop ();
-        
-        int size (Node &head);
 };
 
 #endif

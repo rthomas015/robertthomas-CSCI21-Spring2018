@@ -2,7 +2,7 @@
 #include <iostream>
 #include "node.h"
 
-//using namespace std;
+using namespace std;
 
         //Constructor
         Node::Node() {
@@ -21,10 +21,10 @@
         }
         
         //Destructor
-        Node::~Node (){
+       /* Node::~Node (){
             //this breaks stuff
-            //delete nextNode_;
-        }
+            delete nextNode_;
+        }*/
         
         //getContents
         string Node::contents () const{
