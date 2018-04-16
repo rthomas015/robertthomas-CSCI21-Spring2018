@@ -1,6 +1,6 @@
 #creates the executable from both the object files
-labtest: node.o stack.o main.o 
-	g++ -Wall -g -o test node.o stack.o main.o
+labtest: node.o stack.o test.o 
+	g++ -Wall -g -o test node.o stack.o test.o
 
 #creates the lab2 object file
 lab2: stack.cpp 
@@ -11,8 +11,8 @@ lab: node.cpp
 	g++ -Wall -g -c node.cpp
 
 # creates the unit test object file
-unittest: main.cpp 
-	g++ -Wall -g -c main.cpp	
+unittest: test.cpp 
+	g++ -Wall -g -c test.cpp	
 
 #cleans up old .o files	
 clean:
