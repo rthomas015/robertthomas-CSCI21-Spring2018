@@ -75,7 +75,7 @@ using namespace std;
 		 * Get the number of customer currently in line.
 		 * @return the number of customers currently in line
 		 */
-		int NightClubLine::getNumCustomers () {
+		uint32_t NightClubLine::getNumCustomers () {
 			return waitingLine.size();
 		}
 

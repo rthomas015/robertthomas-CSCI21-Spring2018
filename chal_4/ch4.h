@@ -25,7 +25,7 @@ class NightClubLine {
 		string removeFirstCustomer () throw(logic_error);
 		void clearLine ();
 		
-		int getNumCustomers ();
+		uint32_t getNumCustomers ();
 
 		bool isEmpty ();
 		
