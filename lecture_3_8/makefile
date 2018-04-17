@@ -1,12 +1,20 @@
 #creates the executable from both the object files
-labtest: node.o stack.o test.o 
-	g++ -Wall -g -o test node.o stack.o test.o
+labtest: node.o stack.o list.o doubly.o test.o 
+	g++ -Wall -g -o test node.o stack.o list.o doubly.o test.o
 
-#creates the lab2 object file
-lab2: stack.cpp 
+#creates the doubly linked list object file
+list: doubly.cpp 
+	g++ -Wall -g -c doubly.cpp
+
+#creates the list object file
+list: list.cpp 
+	g++ -Wall -g -c list.cpp
+
+#creates the stack object file
+stack: stack.cpp 
 	g++ -Wall -g -c stack.cpp
 
-#creates the lab2 object file
+#creates the node object file
 lab: node.cpp 
 	g++ -Wall -g -c node.cpp
 
@@ -16,4 +24,4 @@ unittest: test.cpp
 
 #cleans up old .o files	
 clean:
-	rm *.o *test 
+	rm *.o *test
