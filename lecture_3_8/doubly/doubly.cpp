@@ -1,15 +1,16 @@
-#include "list.h"
+#include "doubly.h"
 
 using namespace std;
+
     //Constructor
     //Sets head and tail to point to NULL
-    doubly::list() {
+    doubly::doubly() {
         head = NULL;
         tail = NULL;
     }
     
     //Destructor
-    doubly::~list(){
+    doubly::~doubly(){
         
     }
      
@@ -56,19 +57,19 @@ using namespace std;
         
         if (head != NULL) {
         
-        if (ptr->next_node() == NULL) {
-            head = NULL;
-            tail = NULL;
-        }
-        else {
-            while (ptr->next_node()) {//search for last pointer and second to last pointer
-                penultimateptr = ptr;
-                ptr = ptr->next_node();
+            if (ptr->next_node() == NULL) {
+                head = NULL;
+                tail = NULL;
             }
-            ptr = NULL;
-            penultimateptr->set_next_node(ptr);
-            tail = penultimateptr;
-        }
+            else {
+                while (ptr->next_node()) {//search for last pointer and second to last pointer
+                    penultimateptr = ptr;
+                    ptr = ptr->next_node();
+                }
+                ptr = NULL;
+                penultimateptr->set_next_node(ptr);
+                tail = penultimateptr;
+            }
         }
     }
     
@@ -86,6 +87,7 @@ using namespace std;
         }
         else {
             tail->set_next_node(newNode);
+            tail->set_prev_node()
             tail = newNode;
         }
     }

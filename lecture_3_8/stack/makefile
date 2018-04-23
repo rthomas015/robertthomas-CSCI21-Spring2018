@@ -1,14 +1,6 @@
 #creates the executable from both the object files
-labtest: node.o stack.o list.o doubly.o test.o 
-	g++ -Wall -g -o test node.o stack.o list.o doubly.o test.o
-
-#creates the doubly linked list object file
-list: doubly.cpp 
-	g++ -Wall -g -c doubly.cpp
-
-#creates the list object file
-list: list.cpp 
-	g++ -Wall -g -c list.cpp
+labtest: node.o stack.o test.o 
+	g++ -Wall -g -o test node.o stack.o test.o
 
 #creates the stack object file
 stack: stack.cpp 

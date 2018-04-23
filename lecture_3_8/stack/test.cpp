@@ -12,7 +12,6 @@
 // To test for correct header guards
 #include "node.h"
 #include "stack.h"
-#include "list.h"
 
 
 TEST_CASE("Default Constructor") {
@@ -87,57 +86,6 @@ TEST_CASE("Testing Pointers") {
   }
 }
 
-
-//Testing the List
-TEST_CASE ("Test List") {
-  list testList;
-  
-  SECTION ("Start of List: Initial") {
-    CHECK (testList.size() == 0);
-    CHECK (testList.print() == "");
-  }
-  
-    testList.push("Jane"); //add a student
-    
-  SECTION ("Start of List: Add student") {
-    CHECK (testList.size() == 1);
-    CHECK (testList.print() == "Jane ");
-  } 
-  
-    testList.push("Janet");
-    testList.push("Steve");
-    
-  SECTION ("Start of List: Add More students") {
-    CHECK (testList.size() == 3);
-    CHECK (testList.print() == "Jane Janet Steve ");
-    CHECK (testList.peek() == "Steve");
-  }
-    
-    testList.pop();
-    
-  SECTION ("Middle of List: Delete a Student") {
-    CHECK (testList.size() == 2);
-    CHECK (testList.print() == "Jane Janet ");
-    CHECK (testList.peek() == "Janet");
-  }
-  
-    testList.pop();
-
-  SECTION ("End of List: Pop Head") {
-    CHECK (testList.size() == 1);
-    CHECK (testList.print() == "Jane ");
-    CHECK (testList.peek() == "Jane");
-  }
-    
-    testList.pop();
-    testList.pop();
-    testList.pop();
-    
-  SECTION ("Popping too many times") {
-    CHECK (testList.size() == 0);
-    CHECK (testList.print() == "");
-  }
-}
 
 //Testing the Stack
 TEST_CASE ("Test Stack: Start") {
