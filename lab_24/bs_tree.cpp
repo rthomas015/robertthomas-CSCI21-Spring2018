@@ -15,17 +15,19 @@ using namespace std;
     
     string BSTree::InOrder() {
         stringstream ss;
-        BSTNode* ptr = root;
-        
-        if (ptr != NULL) {
-            //prints it in order into a string
-            //ss << recursiveOrder(ptr,FindMin());
-            //ss << return recursiveOrder(ss.str());
-        }
-        else { //tree is empty so return empty string
+        ss << RecursiveInOrder(root);
+        return ss.str();
+    }
+    
+    string BSTree::RecursiveInOrder(BSTNode* aNode) {
+        stringstream ss;
+        if (aNode == NULL)
+            return string();
             
-        }
-        
+        ss << RecursiveInOrder(aNode->left_child());
+        ss << aNode->contents() << " ";
+        ss << RecursiveInOrder(aNode->right_child());
+    
         return ss.str();
     }
     

@@ -17,6 +17,8 @@ class BSTree {
         BSTree();
         int size();
         string InOrder();
+        string RecursiveInOrder(BSTNode* aNode);
+        
         bool Insert(int x);
         
         void Clear();
