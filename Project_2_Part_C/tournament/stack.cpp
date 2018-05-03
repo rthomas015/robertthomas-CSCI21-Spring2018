@@ -94,6 +94,6 @@ using namespace std;
     //shows the head of the Stack
     //@param = none
     //@return = string (the contents of the head of the Stack)
-    string Stack::peek() {
+    string Stack::peek_name() {
         return head->contents();
     }

@@ -31,7 +31,7 @@ class Stack {
     
         void push (string name);
         
-        string peek();
+        string peek_name();
     
 };
 

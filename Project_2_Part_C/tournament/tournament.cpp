@@ -17,28 +17,30 @@
 
 using namespace std;
 
-void tournament_function(Stack& playerStack, Queue& playerQueue, int& totalPlayers, int& totalGamesPlayed, vector<string>& listofPlayers, vector<int>& gamesPlayed) {
+
+template <typename QS>
+void tournament_function(QS& playerList, int& totalPlayers, int& totalGamesPlayed, vector<string>& listofPlayers, vector<int>& gamesPlayed) {
     string player_1 = "",
            player_2 = "";
 
-    while (playerQueue.size() > 1) {
+    while (playerList.size() > 1) {
         //Dequeue first two players
-        player_1 = playerQueue.peek_name();
-        playerQueue.pop();
+        player_1 = playerList.peek_name();
+        playerList.pop();
         
-        player_2 = playerQueue.peek_name();
-        playerQueue.pop();
+        player_2 = playerList.peek_name();
+        playerList.pop();
 
         //select a winner
         if (player_1 < player_2) {
             //player_1 is the winner
             cout << player_1 << " won against " << player_2 << endl;
-            playerQueue.push(player_1);
+            playerList.push(player_1);
         }
         else {
             //player_2 is the winner
             cout << player_2 << " won against " << player_1 << endl;
-            playerQueue.push(player_2);
+            playerList.push(player_2);
         }
         
         for (int i=0;i<totalPlayers;i++) {
@@ -55,6 +57,31 @@ void tournament_function(Stack& playerStack, Queue& playerQueue, int& totalPlaye
 
 }
 
+//add template
+template <typename QS>
+void readIn (QS& playerList, string file_name, int& totalPlayers, vector<string>& listofPlayers, vector<int>& gamesPlayed) {
+    //read in list of players from file
+    string player_list = "";
+    ifstream player_file;
+    player_file.open(file_name.c_str());
+      
+      //test if file is open correctly
+      while (!player_file.is_open()) {
+        cout << endl << "An error occurred, please input another file: ";
+        cin >> file_name;
+        player_file.open(file_name.c_str());
+      }
+      
+      while (!player_file.eof()) {
+        getline(player_file, player_list);
+        playerList.push(player_list);
+        listofPlayers.push_back(player_list);
+        gamesPlayed.push_back(0);
+        totalPlayers = totalPlayers + 1;
+      }
+      
+    player_file.close();
+}
 
 int main (int argc, char* argv[]) {
     Queue playerQueue;
@@ -73,38 +100,34 @@ int main (int argc, char* argv[]) {
     
     //insert argument logic here
     //No testing needed per instructions
-    file_name = argv[1];
-    tournament_type = argv[2];
+    if (argc == 3) {
+        file_name = argv[1];
+        tournament_type = argv[2];
+    }
     
-    //read in list of players from file
-    ifstream player_file;
-    player_file.open(file_name.c_str());
-      
-      //test if file is open correctly
-      while (!player_file.is_open()) {
-        cout << endl << "An error occurred, please input another file: ";
-        cin >> file_name;
-        player_file.open(file_name.c_str());
-      }
-      
-      while (!player_file.eof()) {
-        getline(player_file, player_list);
-        playerQueue.push(player_list);
-        playerStack.push(player_list);
-        listofPlayers.push_back(player_list);
-        gamesPlayed.push_back(0);
-        totalPlayers = totalPlayers + 1;
-      }
-      
-    player_file.close();
-    
+    //Conditional for tournament type
+    if (tournament_type == "Queue") {
+        Queue playerList;
+        readIn(playerList, file_name, totalPlayers, listofPlayers, gamesPlayed);
+        tournament_function (playerList, totalPlayers, totalGamesPlayed, listofPlayers, gamesPlayed);
+    }
+    else if (tournament_type == "Stack") {
+        Stack playerList;
+        readIn(playerList, file_name, totalPlayers, listofPlayers, gamesPlayed);
+        tournament_function(playerList, totalPlayers, totalGamesPlayed, listofPlayers, gamesPlayed);
+    }
+    else { //something unexpected happened
+        return 1;
+    }
+   
     //Tournament Function
-    tournament_function(playerStack, playerQueue, totalPlayers, totalGamesPlayed, listofPlayers, gamesPlayed);
+   // tournament_function(playerStack, playerQueue, totalPlayers, totalGamesPlayed, listofPlayers, gamesPlayed);
     
     avgGamesPlayed = totalGamesPlayed / 7.00;
     
+    //fix playerList.peek
     //Tournament Output
-    cout << endl << "The Tournament Champion is: " << playerQueue.peek_name()
+    cout << endl << "The Tournament Champion is: " /*<< playerList.peek_name()*/
          << endl << "Total Games Played: " << totalGamesPlayed 
          << endl << "The average number of Games Played: " << fixed << setprecision(2) << avgGamesPlayed;
     
