@@ -21,6 +21,8 @@ class BSTree {
         
         int FindMin();
         
+        int RecursiveSize(BSTNode* aNode);
+        
         bool Remove(int x);
         bool RecursiveRemove(int x);
         

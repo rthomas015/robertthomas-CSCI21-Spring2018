@@ -1,9 +1,9 @@
-/*Project 2 - Part A
+/*Project 2 - Part C
   By: Robert Thomas
-  Date: 3/5/2018 
+  Date: 5/1/2018 
   Description: Write a program that takes in information from a file (user specified) and stores it as a map for a game of Battleship. The program
   should have a base class (Player) and two classes derived from it (Computer) and (Human). For Part A only the Human player needs to be completed.
-  3
+  The program will use a programmer created Queue and Stack rather than standard template library version
 */
 
 #include <iostream>

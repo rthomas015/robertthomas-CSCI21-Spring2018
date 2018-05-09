@@ -6,7 +6,8 @@
 #ifndef computer_h
 #define computer_h
 
-#include <queue>
+#include "node.h"
+#include "queue.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -22,7 +23,7 @@ class Computer : public Player {
   private:
     GameBoard PersonalMap_;
     string LastAttack_;
-    queue<string> attackQueue;
+    Queue<string> attackQueue; //using personal queue
     
   public:
     //Constructor

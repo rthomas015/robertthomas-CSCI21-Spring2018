@@ -7,7 +7,9 @@ using namespace std;
         //Constructor
         template<typename T>
         Node<T>::Node() {
+            //player_ = "";
             nextNode_ = NULL;
+            //gamesPlayed = 0;
         }
         
         template<typename T>
@@ -22,6 +24,13 @@ using namespace std;
             this->nextNode_ = nextNode;
         }
         
+        //Destructor
+       /* Node::~Node (){
+            //this breaks stuff
+            delete nextNode_;
+        }*/
+        
+        //getContents
         template<typename T>
         T Node<T>::contents () const{
             return player_; 

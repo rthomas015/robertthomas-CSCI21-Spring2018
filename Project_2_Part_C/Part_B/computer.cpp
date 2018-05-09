@@ -1,4 +1,5 @@
 #include "computer.h"
+#include "queue.h"
 
 Computer::Computer () {
     //runs Gameboard constructor and sets the map to empty
@@ -42,8 +43,8 @@ string Computer::attackPosition (Human &humanplayer) {
     //if the queue has been created and not exhausted
     else if (attackQueue.size()>0) {
         //Pick next in queue
-        cout << endl << "Queue Size: " << endl;
-        temp_string = attackQueue.front();
+        cout << endl << "Queue Size: " << attackQueue.size() << endl;
+        temp_string = attackQueue.peek_name();
         x = temp_string[0];
         y = temp_string[2] - 48;
         attackQueue.pop();
@@ -52,7 +53,7 @@ string Computer::attackPosition (Human &humanplayer) {
         temp_map_string = temp_map.at(x-65);
         
         while ((temp_map_string.at(y*2) == 'M' || temp_map_string.at(y*2) == 'H') && attackQueue.size()>0) {
-            temp_string = attackQueue.front();
+            temp_string = attackQueue.peek_name();
             x = temp_string[0];
             y = temp_string[2] - 48;
             attackQueue.pop();
@@ -77,7 +78,7 @@ string Computer::attackPosition (Human &humanplayer) {
     LastAttack_ = humanplayer.checkPosition(x,y);
     
     //Create a new Queue if there was a hit and no Queue exists
-    if (LastAttack_ == "Hit" && attackQueue.size()==0) {
+    if ((LastAttack_ == "Hit" || LastAttack_ == "Already") && attackQueue.size()==0) {
         //create queue
         //Push already choosen squares
         //Do not push squares that don't exist

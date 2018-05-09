@@ -1,5 +1,5 @@
 #include "queue.h"
-
+    
     template <typename T>
     Queue<T>::Queue () {
         head = NULL;
@@ -20,7 +20,6 @@
             newNode->set_next_node(tail);
             tail = newNode;
         }
-        
     }
 
     template <typename T>
@@ -65,6 +64,7 @@
         return head->contents();
     }
     
+
     template <typename T>
     int Queue<T>::size() {
         int contents = 0;

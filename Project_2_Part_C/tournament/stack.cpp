@@ -3,13 +3,15 @@
 using namespace std;
     //Constructor
     //Sets head and tail to point to NULL
-    Stack::Stack() {
+    template <typename T>
+    Stack<T>::Stack() {
         head = NULL;
         tail = NULL;
     }
     
     //Destructor
-    Stack::~Stack(){
+    template <typename T>
+    Stack<T>::~Stack(){
         
     }
      
@@ -17,9 +19,10 @@ using namespace std;
     //prints all items in the Stack 
     //@param = none
     //@return = none
-    string Stack::print (){
+    template <typename T>
+    string Stack<T>::print (){
         stringstream ss;
-        Node* ptr = tail;
+        Node<T>* ptr = tail;
         
         while (ptr != NULL) {
             ss << ptr->contents() << " ";
@@ -33,8 +36,9 @@ using namespace std;
     //Returns the size of the Stack 
     //@param = none
     //@return = integer counter which counted all the items of the Stack
-    int Stack::size () {
-        Node* ptr = tail;
+    template <typename T>
+    int Stack<T>::size () {
+        Node<T>* ptr = tail;
         int counter = 0;
         
         while (ptr != NULL) {
@@ -49,9 +53,10 @@ using namespace std;
     //removes an item from the top of the Stack
     //@param = none
     //@return = none
-    void Stack::pop () {
-        Node* ptr = tail;
-        Node* penultimateptr = new Node();
+    template <typename T>
+    void Stack<T>::pop () {
+        Node<T>* ptr = tail;
+        Node<T>* penultimateptr = new Node<T>();
         
         if (tail != NULL) {
             if (tail->next_node() == NULL) {
@@ -75,8 +80,9 @@ using namespace std;
     //adds an item to the top of the Stack
     //@param = name - a string that holds the content for the node
     //@return = none
-    void Stack::push (string name){
-        Node* newNode = new Node();
+    template <typename T>
+    void Stack<T>::push (T name){
+        Node<T>* newNode = new Node<T>();
         newNode->set_contents(name);
         
         if (tail == NULL) {
@@ -94,6 +100,11 @@ using namespace std;
     //shows the head of the Stack
     //@param = none
     //@return = string (the contents of the head of the Stack)
-    string Stack::peek_name() {
+    template <typename T>
+    T Stack<T>::peek_name() {
         return head->contents();
     }
+    
+    
+//added to make program function just for strings   
+template class Stack<string>;

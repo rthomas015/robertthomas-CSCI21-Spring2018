@@ -54,7 +54,6 @@ class Queue {
         //@return - integer
         int size();
         
-        
 };
 
 #endif

@@ -42,7 +42,7 @@ string Computer::attackPosition (Human &humanplayer) {
     //if the queue has been created and not exhausted
     else if (attackQueue.size()>0) {
         //Pick next in queue
-        cout << endl << "Queue Size: " << endl;
+        cout << endl << "Queue Size: " << attackQueue.size() <<  endl;
         temp_string = attackQueue.front();
         x = temp_string[0];
         y = temp_string[2] - 48;

@@ -8,9 +8,25 @@ using namespace std;
     }
     
     int BSTree::size() {
-        //doesn't take an argument so can't recursively count
-        //adds and subtracts upon add and removing
-        return size_;
+        return RecursiveSize(root);
+    }
+    
+    int BSTree::RecursiveSize(BSTNode* aNode) {
+        int treeSize = 1;
+        
+        if (aNode == NULL) {
+            return 0;
+        }
+        else {
+            if (aNode->left_child() != NULL) {
+                treeSize = treeSize + RecursiveSize(aNode->left_child());
+            }
+            if (aNode->right_child() != NULL) {
+                treeSize = treeSize + RecursiveSize(aNode->right_child());
+            }
+        }
+        
+        return treeSize;
     }
     
     string BSTree::InOrder() {
@@ -61,12 +77,10 @@ using namespace std;
         if (penultimateptr != NULL) {
             if (x < penultimateptr->contents()) {
                 penultimateptr->set_left_child(newNode);
-                size_ = size_ + 1;
                 return true;
             }
             else if (x > penultimateptr->contents()) {
                 penultimateptr->set_right_child(newNode);
-                size_ = size_ + 1;
                 return true;
             }
             else {
@@ -78,7 +92,6 @@ using namespace std;
     
     void BSTree::Clear() {
         root = NULL; //doesn't actually delete everything, can't be the right way
-        size_ = 0;
     }
     
          

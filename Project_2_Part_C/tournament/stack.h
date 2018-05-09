@@ -12,11 +12,12 @@
 
 using namespace std;
 
+template <class T>
 class Stack {
     
     private:
-        Node* head;
-        Node* tail;
+        Node<T>* head;
+        Node<T>* tail;
     
     public:
         Stack();
@@ -29,9 +30,9 @@ class Stack {
     
         void pop ();
     
-        void push (string name);
+        void push (T name);
         
-        string peek_name();
+        T peek_name();
     
 };
 
