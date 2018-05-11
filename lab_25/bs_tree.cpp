@@ -115,81 +115,80 @@ using namespace std;
     bool BSTree::Remove(int x) {
         return RecursiveRemove(x);
     }
-    
+
     bool BSTree::RecursiveRemove(int key) {
-           BSTNode* par = NULL;
-           BSTNode* ptr = root;
-           
-           if (ptr == NULL) {
-                return false;
-           }
-           
-           while (ptr != NULL) { 
-              if (ptr->contents() == key) { // Node found 
-                 if (!ptr->left_child() && !ptr->right_child()) {        // Remove leaf
-                    if (!par) { // Node is root
-                       root = NULL;
+        BSTNode* ptr = root;
+        BSTNode* penultimateptr = NULL;
+    
+        if (ptr == NULL) {
+            return false;
+        }
+        
+        while (ptr != NULL) { //Tree is not empty
+            if (ptr->contents() == key) {  //if equal then its found
+                //No Children
+                if (ptr->left_child() == NULL && ptr->right_child() == NULL) {        //there are no children
+                    if (!penultimateptr) {
+                        root = NULL;
                     }
-                    else if (par->left_child() == ptr) {
-                       par->set_left_child(NULL);
+                    else if (penultimateptr->left_child() == ptr) { //its the left node
+                        penultimateptr->set_left_child(NULL);
                     }
-                    else {
-                       par->set_right_child(NULL);
-                    }
-                 }
-                 else if (ptr->left_child() && !ptr->right_child()) {     // Remove node with only left child
-                    if (!par) { // Node is root
-                       root = ptr->left_child();
-                    }
-                    else if (par->left_child() == ptr) {
-                       par->set_left_child(ptr->left_child());
-                    }
-                    else {
-                       par->set_right_child(ptr->left_child());
-                    }
-                 }
-                 else if (!ptr->left_child() && ptr->right_child()) {     // Remove node with only right child
-                    if (!par){ // Node is root
-                       root = ptr->right_child();
-                    }
-                    else if (par->left_child() == ptr) {
-                       par->set_left_child(ptr->right_child());
-                    }
-                    else {
-                       par->set_right_child(ptr->right_child());
+                    else { //its the right node
+                        penultimateptr->set_right_child(NULL);
                     }
                 }
-                 else {                             // Remove node with two children
+                //Left Child Only
+                else if (ptr->left_child() != NULL && ptr->right_child() == NULL) { //Remove Node with only left child
+                    if (!penultimateptr) {
+                        root = ptr->left_child();
+                    }
+                    else if (penultimateptr->left_child() == ptr) {                     //its the left node
+                        penultimateptr->set_left_child(ptr->left_child());
+                    }
+                    else {                                                              //its the right node
+                        penultimateptr->set_right_child(ptr->left_child());
+                    }
+                }
+                //Right Child Only
+                else if (ptr->left_child() == NULL && ptr->right_child() != NULL) { //Remove Node with only right child
+                    if (!penultimateptr) {
+                        root = ptr->right_child();
+                    }
+                    else if (penultimateptr->left_child() == ptr) {                     //its the left node
+                        penultimateptr->set_left_child(ptr->right_child());
+                    }
+                    else {                                                              //its the right node
+                        penultimateptr->set_right_child(ptr->right_child());
+                    }
+                }
+                //Two Children
+                else {
                     // Find successor (leftmost child of right subtree)
                     BSTNode* suc = ptr->right_child();
                     
                     while (suc->left_child() != NULL) {
+                       penultimateptr = suc;
                        suc = suc->left_child();
                     }
                     
-                    ptr = suc;                 // Copy successor to current node
-                    //TreeRemove(ptr->right_child(), suc->key)     // Remove successor from right subtree
-                    // Node found and removed
-                 }
-                 
-                 size_ = size_ - 1;
-                 return true;
+                    // Copy successor value to current node
+                    int x = suc->contents();
+                    RecursiveRemove(x);
+                    ptr->set_contents(x); 
+                }
+                
+                return true;
             }
-              else if (ptr->contents() < key) { // Search right
-                 par = ptr;
-                 ptr = ptr->right_child();
-              }
-              
-              else { // Search left
-                 par = ptr;
-                 ptr = ptr->left_child();
-              }
-              //
-              //else {
-             //     return false;
-              //} if (ptr->contents() > key)
+            else if (ptr->contents() < key) {   //if less than search right
+                penultimateptr = ptr;
+                ptr = ptr->right_child();
+            }
+            else {                              //if more than search left
+                penultimateptr = ptr;
+                ptr = ptr->left_child();
+            }
+        }
         
-           }
-
-        return false; // Node not found
+        return false;
     }
