@@ -11,7 +11,13 @@ using namespace std;
     
     //Destructor
     doubly::~doubly(){
-        
+        Node* ptr = head;
+       
+        while(ptr != 0) {
+            Node* next = ptr->next_node();
+            delete ptr;
+            ptr = next;
+        }
     }
      
     //Print
@@ -29,6 +35,99 @@ using namespace std;
         }
         
         return ss.str();
+    }
+    
+    //Insert Before
+    //inserts item into list
+    //@param - location in list
+    //@param - data to insert
+    //@return - returns true if added and false if not
+    bool doubly::insert(int location, string data) {
+        Node* newNode = new Node();
+        newNode->set_contents(data);
+        Node* ptr = head;
+        Node* penultimateptr = NULL;
+        
+        int curLoc = 0;
+        //if list is not empty
+        if (head != NULL) {
+            //loop to position
+            while (ptr->next_node() != NULL && curLoc != location) {
+                penultimateptr = ptr;
+                ptr = ptr->next_node();
+                curLoc = curLoc + 1;
+            }
+                
+            if (location == 0) { //adding at beginning of list
+                ptr->set_prev_node(newNode);
+                head = newNode;
+                head->set_next_node(ptr);
+            }
+            else if (location > size() || location < 0) { //outside of list
+                return false;
+            }  
+            else if (location == size()) { //adding at end of list
+                push(data);
+            }
+            else {
+                penultimateptr->set_next_node(newNode);
+                newNode->set_prev_node(penultimateptr);
+                newNode->set_next_node(ptr);
+                ptr->set_prev_node(newNode);
+            }
+        }
+        //empty list
+        else {
+            head = newNode;
+            tail = newNode;
+        }
+        
+        return true;
+    }
+    
+    //Remove
+    //
+    bool doubly::remove(string data) {
+        Node* ptr = head;
+        
+        if (head != NULL) {
+            
+            while (ptr->next_node() != NULL && ptr->contents() != data) {
+                ptr = ptr->next_node();
+            }
+            
+            if (ptr->contents() == data) {
+                
+                if (ptr->next_node() == NULL) { 
+                    //this is the first and only thing
+                    pop();
+                }
+                else if (ptr == head && ptr != tail) {
+                    //more than one thing and its the head
+                    head = ptr->next_node();    
+                }
+                else if (ptr != head && ptr == tail) {
+                    //more than one thing and its the tail
+                    pop();
+                }
+                else {
+                    //more than one thing and somewhere in middle
+                    Node* prevPtr = ptr->prev_node();
+                    Node* nextPtr = ptr->next_node();
+                    prevPtr->set_next_node(ptr->next_node());
+                    nextPtr->set_prev_node(ptr->prev_node());
+                }
+            }
+            else {
+                //didn't find
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+        
+        return true;
     }
     
     //Size
@@ -86,9 +185,11 @@ using namespace std;
             tail = newNode;
         }
         else {
+            Node* tempPtr = new Node();
+            tempPtr = tail;
             tail->set_next_node(newNode);
-            tail->set_prev_node()
             tail = newNode;
+            tail->set_prev_node(tempPtr);
         }
     }
     
@@ -97,5 +198,10 @@ using namespace std;
     //@param = none
     //@return = string (the contents of the tail of the list)
     string doubly::peek() {
-        return tail->contents();
+        if(tail != NULL) {
+            return tail->contents();
+        }
+        else {
+            return string();
+        }
     }

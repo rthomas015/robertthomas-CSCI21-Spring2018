@@ -10,7 +10,13 @@ using namespace std;
     
     //Destructor
     stack::~stack(){
-        
+        Node* ptr = head;
+       
+        while(ptr != 0 ) {
+            Node* next = ptr->next_node();
+            delete ptr;
+            ptr = next;
+        } 
     }
      
     //Print

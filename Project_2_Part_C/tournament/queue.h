@@ -8,6 +8,7 @@
 #include <sstream>
 #include <string>
 #include "node.h"
+#include "iterator.h"
 
 using namespace std;
 
@@ -54,7 +55,8 @@ class Queue {
         //@return - integer
         int size();
         
-        
+        //friend class Iterator
+        friend class Iterator;
 };
 
 #endif

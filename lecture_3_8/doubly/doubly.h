@@ -20,6 +20,10 @@ class doubly {
 
     string print ();
 
+    bool insert(int location, string data);
+    
+    bool remove(string data);
+    
     int size ();
 
     void pop ();

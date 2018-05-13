@@ -5,6 +5,17 @@
         tail = NULL;
     }
 
+    Queue::~Queue() {
+        Node* ptr = head;
+       
+        while(ptr != 0 ) {
+            Node* next = ptr->next_node();
+            delete ptr;
+            ptr = next;
+        }
+    
+    }
+    
     void Queue::push(string info) {
         //pushes into new tail
         Node* newNode = new Node();

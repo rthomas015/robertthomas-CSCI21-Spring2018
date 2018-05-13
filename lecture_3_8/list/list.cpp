@@ -10,7 +10,13 @@ using namespace std;
     
     //Destructor
     list::~list(){
-        
+        Node* ptr = head;
+       
+        while(ptr != 0 ) {
+            Node* next = ptr->next_node();
+            delete ptr;
+            ptr = next;
+        }
     }
      
     //Print

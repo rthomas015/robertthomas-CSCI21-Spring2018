@@ -88,11 +88,9 @@ TEST_CASE("Testing Pointers") {
 
 
 //Testing the List
-TEST_CASE ("Test List") {
+TEST_CASE ("Test Generic List Stuff") {
   doubly testList;
-}
 
-/* 
   SECTION ("Start of List: Initial") {
     CHECK (testList.size() == 0);
     CHECK (testList.print() == "");
@@ -138,4 +136,113 @@ TEST_CASE ("Test List") {
     CHECK (testList.size() == 0);
     CHECK (testList.print() == "");
   }
-} */
+} 
+
+TEST_CASE ("Test Double Linked List Things") {
+  doubly testList;
+
+  SECTION ("Start of List: Initial") {
+    CHECK (testList.size() == 0);
+    CHECK (testList.print() == "");
+  }
+  
+    testList.push("Jane"); //add a student
+    
+  SECTION ("Start of List: Add student") {
+    CHECK (testList.size() == 1);
+    CHECK (testList.print() == "Jane ");
+  } 
+  
+    testList.push("Janet");
+    testList.push("Steve");
+    
+  SECTION ("Start of List: Add More students") {
+    CHECK (testList.size() == 3);
+    CHECK (testList.print() == "Jane Janet Steve ");
+    CHECK (testList.peek() == "Steve");
+  }
+    
+  bool tr_check = testList.insert(1,"Joe");
+  
+  SECTION ("Inserting") {
+    CHECK (tr_check);
+    CHECK (testList.size() == 4);
+    CHECK (testList.print() == "Jane Joe Janet Steve ");
+    CHECK (testList.peek() == "Steve");
+  }
+  
+  tr_check = testList.insert(1,"James");
+  
+  SECTION ("Inserting") {
+    CHECK (tr_check);
+    CHECK (testList.size() == 5);
+    CHECK (testList.print() == "Jane James Joe Janet Steve ");
+    CHECK (testList.peek() == "Steve");
+  }
+  
+  tr_check = testList.insert(1,"Kyle");
+  
+  SECTION ("Insert another") {
+    CHECK (tr_check);
+    CHECK (testList.size() == 6);
+    CHECK (testList.print() == "Jane Kyle James Joe Janet Steve ");
+    CHECK (testList.peek() == "Steve");
+  }
+  
+  tr_check = testList.insert(0,"Burt");
+  
+  SECTION ("Insert at head") {
+    CHECK (tr_check);
+    CHECK (testList.size() == 7);
+    CHECK (testList.print() == "Burt Jane Kyle James Joe Janet Steve ");
+    CHECK (testList.peek() == "Steve");
+  }
+  
+  tr_check = testList.remove("Burt");
+  
+  SECTION ("Remove head") {
+    CHECK (tr_check);
+    CHECK (testList.size() == 6);
+    CHECK (testList.print() == "Jane Kyle James Joe Janet Steve ");
+    CHECK (testList.peek() == "Steve");
+  }
+  
+  tr_check = testList.remove("Joe");
+  
+  SECTION ("Remove middle") {
+    CHECK (tr_check);
+    CHECK (testList.size() == 5);
+    CHECK (testList.print() == "Jane Kyle James Janet Steve ");
+    CHECK (testList.peek() == "Steve");
+  }
+  
+  tr_check = testList.remove("Steve");
+  
+  SECTION ("Remove end") {
+    CHECK (tr_check);
+    CHECK (testList.size() == 4);
+    CHECK (testList.print() == "Jane Kyle James Janet ");
+    CHECK (testList.peek() == "Janet");
+  }
+  
+  testList.pop();
+  testList.pop();
+  testList.pop();
+  tr_check = testList.remove("JaneDoe");
+  
+  SECTION ("Remove information that doesn't exist") {
+    CHECK (!tr_check);
+    CHECK (testList.size() == 1);
+    CHECK (testList.print() == "Jane ");
+    CHECK (testList.peek() == "Jane");
+  }
+  
+  tr_check = testList.remove("Jane");
+  
+  SECTION ("Remove one and only item from list") {
+    CHECK (tr_check);
+    CHECK (testList.size() == 0);
+    CHECK (testList.print() == "");
+    CHECK (testList.peek() == "");
+  }
+}

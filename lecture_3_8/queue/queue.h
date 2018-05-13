@@ -14,6 +14,7 @@ class Queue {
         
     public:
         Queue();
+        ~Queue();
         void push(string info);
         void pop();
         string print();
