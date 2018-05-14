@@ -38,7 +38,13 @@ class Human : public Player {
    *@return - none
    */
     void printTrackingBoardforOpponent ();
-    
+  
+  //printWholeBoard
+  /* this function prints the entire board (all ships, hits and misses)
+   *@param - none
+   *@return - none
+   */
+   void printWholeBoard ();
     
     //checkPosition
    /* Returns whether or not the coorindate values provided constitutes a hit, miss or error on the player's personal Map

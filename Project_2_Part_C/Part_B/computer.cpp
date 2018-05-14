@@ -29,19 +29,8 @@ string Computer::attackPosition (Human &humanplayer) {
     char x, temp_x;
     int y = 0, temp_y = 0;
     
-    //come up with a position if last attack was a miss and the queue has not been created
-    if (LastAttack_ == "Miss" && attackQueue.size()==0) {
-        //random number 0-99
-        srand(time(0));
-        y = (rand() % 10);
-        x = (rand() % 10) + 65;
-        
-        //cout just for testing
-        cout << "Random Guess: " << x << " " << y << endl;
-        //per specification doesn't need to test if random pick has been choosen previously
-    }
     //if the queue has been created and not exhausted
-    else if (attackQueue.size()>0) {
+    if (attackQueue.size() > 0)  {
         //Pick next in queue
         cout << endl << "Queue Size: " << attackQueue.size() << endl;
         temp_string = attackQueue.peek_name();
@@ -52,23 +41,17 @@ string Computer::attackPosition (Human &humanplayer) {
         temp_map = humanplayer.getPersonalMap();
         temp_map_string = temp_map.at(x-65);
         
-        while ((temp_map_string.at(y*2) == 'M' || temp_map_string.at(y*2) == 'H') && attackQueue.size()>0) {
-            temp_string = attackQueue.peek_name();
-            x = temp_string[0];
-            y = temp_string[2] - 48;
-            attackQueue.pop();
-            temp_map_string = temp_map.at(x-65);
-        }
+    }
+    //come up with a position if last attack was a miss and the queue has not been created
+    else { 
+        //random number 0-99
+        srand(time(0));
+        y = (rand() % 10);
+        x = (rand() % 10) + 65;
         
-        if ((temp_map_string.at(y*2) == 'M' || temp_map_string.at(y*2) == 'H') && attackQueue.size()==0) {
-            srand(time(0));
-            y = (rand() % 10);
-            x = (rand() % 10) + 65;
-            
-            //cout just for testing
-            cout << "Random Guess from loop: " << x << " " << y << endl;
-        }
-        
+        //cout just for testing
+        cout << "Random Guess: " << x << " " << y << endl;
+        //per specification doesn't need to test if random pick has been choosen previously
     }
     
     //cout just for testing
@@ -78,7 +61,7 @@ string Computer::attackPosition (Human &humanplayer) {
     LastAttack_ = humanplayer.checkPosition(x,y);
     
     //Create a new Queue if there was a hit and no Queue exists
-    if ((LastAttack_ == "Hit" || LastAttack_ == "Already") && attackQueue.size()==0) {
+    if (LastAttack_ == "Hit" && attackQueue.size()==0) {
         //create queue
         //Push already choosen squares
         //Do not push squares that don't exist

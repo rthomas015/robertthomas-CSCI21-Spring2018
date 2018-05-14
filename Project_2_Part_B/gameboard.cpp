@@ -73,10 +73,13 @@
       if (letter_value < 10 && y < 10) {
         //valid
         temp_string = gameboard_.at(letter_value);
-        if (temp_string.at(y*2) == 'S' || temp_string.at(y*2) == 'H') {
+        if (temp_string.at(y*2) == 'S') {
           positionResult = "Hit";
           temp_string.at(y*2) = 'H';
           gameboard_.at(letter_value) = temp_string;
+        }
+        else if (temp_string.at(y*2) == 'H') {
+          positionResult = "Already";
         }
         else {
           positionResult = "Miss";

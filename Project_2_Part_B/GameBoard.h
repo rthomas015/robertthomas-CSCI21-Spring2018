@@ -69,6 +69,7 @@ class GameBoard {
     * @returns nothing
     */
     void printBoard ();
+    
     /* printTrackingBoard
     * iterates through the board game vector and prints out each individual line 
     * @param none
