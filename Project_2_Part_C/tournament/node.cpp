@@ -17,9 +17,10 @@ using namespace std;
         }
         
         template<typename T>
-        Node<T>::Node(T name, Node<T>* nextNode) {
+        Node<T>::Node(T name, Node<T>* nextNode, Node<T>* prevNode) {
             player_ = name;
             nextNode_ = nextNode;
+            prevNode_ = prevNode;
         }
         
         template<typename T>
@@ -31,6 +32,11 @@ using namespace std;
         Node<T>* Node<T>::next_node() const {
             return nextNode_;
         }
+        
+        template<typename T>
+        Node<T>* Node<T>::prev_node() const {
+            return prevNode_;
+        }
 
         template<typename T>
         void Node<T>::set_contents (T newStudent) {
@@ -40,6 +46,11 @@ using namespace std;
         template<typename T>
         void Node<T>::set_next_node (Node<T>* nextNode) {
             nextNode_ = nextNode;
+        }
+        
+        template<typename T>
+        void Node<T>::set_prev_node (Node<T>* prevNode) {
+            prevNode_ = prevNode;
         }
         
 //added to make program function just for strings    

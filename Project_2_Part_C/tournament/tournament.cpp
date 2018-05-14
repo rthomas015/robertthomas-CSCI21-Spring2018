@@ -144,6 +144,23 @@ int main (int argc, char* argv[]) {
     if (tournament_type == "Queue") {
         Queue<string> playerList;
         readIn(playerList, file_name, totalPlayers, listofPlayers, gamesPlayed);
+        
+        //Test Queue Iterator using ++
+        cout << "Queue Iterator using ++ (starts at tail):" << endl;
+        for (Iterator<string> iter = playerList.begin();iter != playerList.end();iter++) {
+            cout << "Names: " << iter.print() << endl;
+        }
+        
+        cout << endl;
+        
+        //Test Queue Iterator using --
+        cout << endl << "Queue Iterator using -- (starts at head):" << endl;
+        for (Iterator<string> iter = playerList.rbegin();iter != playerList.end();iter--) {
+            cout << "Names: " << iter.print() << endl;
+        }
+        
+        cout << endl;
+        
         tournament_function (playerList, totalPlayers, totalGamesPlayed, listofPlayers, gamesPlayed);
         tournament_champion = playerList.peek_name();
         

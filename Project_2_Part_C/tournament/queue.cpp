@@ -17,8 +17,11 @@
             tail = newNode;
         }
         else {
-            newNode->set_next_node(tail);
+            Node<T>* tempPtr = new Node<T>;
+            tempPtr = tail;
+            tail->set_prev_node(newNode);
             tail = newNode;
+            tail->set_next_node(tempPtr);
         }
         
     }
@@ -78,18 +81,25 @@
         return contents;
     }
     
-    
     template <typename T>
-    Iterator<T> Queue<T>::begin() {
-        Iterator<T> iter(head);
+    Iterator<T> Queue<T>::end() {
+        Iterator<T> iter;
         return iter;
     }
         
     template <typename T>
-    Iterator<T> Queue<T>::end() {
+    Iterator<T> Queue<T>::begin() {
         Iterator<T> iter(tail);
+        
         return iter;
     }
+    
+    template <typename T>
+    Iterator<T> Queue<T>::rbegin() {
+        Iterator<T> iter(head);
+        return iter;
+    }
+
 
 //added to make program function just for strings   
 template class Queue<string>;

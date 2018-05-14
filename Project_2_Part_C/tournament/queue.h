@@ -58,9 +58,14 @@ class Queue {
         //friend class Iterator
         friend class Iterator<T>;
         
+        //Returns an iterator to the front of the Queue
         Iterator<T> begin();
         
+        //Returns an iterator to one past the end of the line/Queue
         Iterator<T> end();
+        
+        //Returns an iterator to the end of the line/Queue (the head)
+        Iterator<T> rbegin();
 };
 
 #endif
