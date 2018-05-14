@@ -38,6 +38,14 @@ class Player {
    */
   virtual void printTrackingBoardforOpponent () = 0;
   
+  
+  //printWholeBoard - pure virtual
+  /* this function prints the entire board (all ships, hits and misses)
+   *@param - none
+   *@return - none
+   */
+  virtual void printWholeBoard () = 0;
+  
   //setPersonalMap - pure virtual
   /*sets the personal map (the player's board with ships) based on GameBoard object passed to it
    *@param - GameBoard object with gameboard data

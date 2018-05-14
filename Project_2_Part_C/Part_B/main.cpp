@@ -81,13 +81,25 @@ int main (int argc, char* argv[]) {
     //<-- main game loop
     if (first_turn == "HUMAN") { //<-- game loop if Human is first turn
       while ((Computer_Player.getShipSectionsLeft() > 0) && (Human_Player.getShipSectionsLeft() > 0)) {
+        cout << "Your Ships/Computer Guesses: " << endl;
+        Human_Player.printWholeBoard();
+        
+        cout << endl << "Your Guesses: " << endl;
+        
         humanTurn(Computer_Player);
-        cout << endl << "Computer player: " << Computer_Player.attackPosition(Human_Player);
+        cout << "Computer player: " << Computer_Player.attackPosition(Human_Player) << endl;
+      
       } 
     }
     else if (first_turn == "COMPUTER") { //<-- game loop if Computer is first turn
       while ((Computer_Player.getShipSectionsLeft() > 0) && (Human_Player.getShipSectionsLeft() > 0)) {
-        cout << endl << "Computer player: " << Computer_Player.attackPosition(Human_Player);
+        cout << "Computer player: " << Computer_Player.attackPosition(Human_Player) << endl
+             << "Your Ships/Computer Guesses: " << endl;
+        
+        Human_Player.printWholeBoard();
+        
+        cout << endl << "Your Guesses: " << endl;
+        
         humanTurn(Computer_Player);
       }
     }

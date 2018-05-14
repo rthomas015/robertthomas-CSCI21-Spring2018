@@ -17,9 +17,9 @@ using namespace std;
         }
         
         template<typename T>
-        Node<T>::Node(T name, Node* nextNode) {
-            this->player_ = name;
-            this->nextNode_ = nextNode;
+        Node<T>::Node(T name, Node<T>* nextNode) {
+            player_ = name;
+            nextNode_ = nextNode;
         }
         
         template<typename T>
@@ -38,7 +38,7 @@ using namespace std;
         }
         
         template<typename T>
-        void Node<T>::set_next_node (Node* nextNode) {
+        void Node<T>::set_next_node (Node<T>* nextNode) {
             nextNode_ = nextNode;
         }
         

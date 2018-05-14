@@ -8,7 +8,7 @@
 #include <sstream>
 #include <string>
 #include "node.h"
-#include "iterator.h"
+#include "Iterator.h"
 
 using namespace std;
 
@@ -20,7 +20,7 @@ class Queue {
     private:
         Node<T>* head;
         Node<T>* tail;
-        
+
     public:
         //Constructor
         Queue();
@@ -56,7 +56,11 @@ class Queue {
         int size();
         
         //friend class Iterator
-        friend class Iterator;
+        friend class Iterator<T>;
+        
+        Iterator<T> begin();
+        
+        Iterator<T> end();
 };
 
 #endif

@@ -14,6 +14,10 @@ const vector<string>& Human::getPersonalMap () {
     return PersonalMap_.getGameBoard();
 }
 
+void Human::printWholeBoard () {
+    PersonalMap_.printBoard();
+}
+
 void Human::printTrackingBoardforOpponent () {
     PersonalMap_.printTrackingBoard();
 }

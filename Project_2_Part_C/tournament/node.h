@@ -14,22 +14,22 @@ template <class T>
 class Node{
     private:
         T player_;
-        Node* nextNode_;
+        Node<T>* nextNode_;
         
     public:
         //Constructor
-        Node();
+        Node<T>();
         
         //Overloaded Constructor - creates node but with data
         //@param - T name - take in data of type T and initialize the contents of the node to that vlaue
         //@return - none
-        Node(T name);
+        Node<T>(T name);
         
         //Overloaded Constructor - creates node but with data and a pointer to the next node
         //@param - T name - take in data of type T and initialize the contents of the node to that vlaue
         //@param - Node* nextNode - takes in pointer to the nextNode
         //@return - none
-        Node(T name, Node* nextNode);
+        Node<T>(T name, Node* nextNode);
         
         //contents - returns the contents of the node
         //@param - none
@@ -39,7 +39,7 @@ class Node{
         //next_node - returns the pointer information held in next_node
         //@param - none
         //@return - returns a Node* (pointer to the next Node in the Queue or Stack)
-        Node* next_node() const;
+        Node<T>* next_node() const;
         
         //Setters
         //set_contents - sets the contents of the node to some new information
@@ -50,8 +50,9 @@ class Node{
         //set_next_node - sets the next_node of the node to point at the pointer supplied as an argument
         //@param - Node* nextNode - pointer to a node object
         //@return - none
-        void set_next_node (Node* nextNode);
-       
+        void set_next_node (Node<T>* nextNode);
+        
+
 };
 
 #endif

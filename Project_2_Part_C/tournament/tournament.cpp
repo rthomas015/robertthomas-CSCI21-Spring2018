@@ -9,6 +9,7 @@
 
 #include "queue.h"
 #include "stack.h"
+#include "Iterator.h"
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -145,6 +146,7 @@ int main (int argc, char* argv[]) {
         readIn(playerList, file_name, totalPlayers, listofPlayers, gamesPlayed);
         tournament_function (playerList, totalPlayers, totalGamesPlayed, listofPlayers, gamesPlayed);
         tournament_champion = playerList.peek_name();
+        
     }
     else if (tournament_type == "Stack") {
         Stack<string> playerList;

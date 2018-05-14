@@ -9,7 +9,7 @@
     template <typename T>
     void Queue<T>::push(T info) {
         //pushes into new tail
-        Node<T>* newNode = new Node<T>();
+        Node<T>* newNode = new Node<T>;
         newNode->set_contents(info);
         
         if (tail == NULL) {
@@ -77,7 +77,19 @@
         
         return contents;
     }
-
+    
+    
+    template <typename T>
+    Iterator<T> Queue<T>::begin() {
+        Iterator<T> iter(head);
+        return iter;
+    }
+        
+    template <typename T>
+    Iterator<T> Queue<T>::end() {
+        Iterator<T> iter(tail);
+        return iter;
+    }
 
 //added to make program function just for strings   
 template class Queue<string>;

@@ -8,6 +8,7 @@ using namespace std;
 //Game Introduction
 //This prints out the introduction for the game, the name of the game, the rules of the game
 //@param none
+//@return none
 void gameIntroduction() {
       cout << "Battleship" << endl
            << "Rules: you alternate turns with a computer opponent, choosing locations to attack. Each turn results in a hit or a miss. The game ends when one of the player's ships are all sunk." << endl;
@@ -62,6 +63,9 @@ string attackCoordinates () {
 
 
 //Human Turn 
+//This is the function that controls the input/output for the human player's turn
+//@param - Computer &Comp - takes in the computer opponent as an argument
+//@return - nothing
 void humanTurn(Computer &Comp) {
       char letter;
       string input_str = "",
