@@ -35,7 +35,8 @@
     Student::~Student() {
         //not needed
     }
-
+    
+/*
     //overloaded operator (add student)
     void Student::operator<<(Student addStudent) {
         //dont really understand as the list is a group of objects
@@ -46,3 +47,4 @@
         //second argument is implict this
         return (secondName_ < student_2.secondName_);
     }
+*/

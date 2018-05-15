@@ -1,6 +1,6 @@
 #creates the executable from both the object files
-labtest: main.o student.o node.o list.o
-	g++ -Wall -g -o test main.o student.o node.o list.o
+labtest: main.o Iterator.o student.o node.o list.o
+	g++ -Wall -g -o test main.o Iterator.o student.o node.o list.o
 
 # creates the student object file
 main: main.cpp 
@@ -10,10 +10,14 @@ main: main.cpp
 list: list.cpp 
 	g++ -Wall -g -c list.cpp
 
+#creates the Iterator object file
+Iterator: Iterator.cpp 
+	g++ -Wall -g -c Iterator.cpp
+	
 #creates the node object file
 lab: node.cpp 
 	g++ -Wall -g -c node.cpp
-	
+
 # creates the student object file
 student: student.cpp 
 	g++ -Wall -g -c student.cpp	
