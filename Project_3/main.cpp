@@ -16,14 +16,17 @@
 using namespace std;
 
 int main() {
-    stringstream ss;
-    int test = 0;
+    BSTree wordTree;
     
     //File Input
     ifstream fs;
     string file_name = "words.txt",
            temp_string = "",
            temp_word = "";
+    stringstream ss;
+    unsigned int temp_frequency = 0;
+    
+    
     fs.open(file_name.c_str());
     
     while (!fs.is_open()) {
@@ -39,13 +42,17 @@ int main() {
         ss.clear();
         ss << temp_string;
         ss >> temp_word;
-        ss >> test;
+        ss >> temp_frequency;
         
-        cout << "word: " << temp_word << " num: " << test << endl;
+        wordTree.Insert(temp_word,temp_frequency);
     }
     
     fs.close();
     //End of File Input
     
+    //Print Tree in Order
+    cout << "Alphabetical Order Ascending: " << wordTree.InAlphaOrder()
+         << endl;
+    cout << "Frequency Descending: " << wordTree.InFreqOrder();
     return 0;
 }

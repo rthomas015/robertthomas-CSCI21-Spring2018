@@ -2,6 +2,7 @@
 #define bs_tree_H
 
 #include <string>
+#include <vector>
 #include <iostream>
 #include <sstream>
 #include "bst_node.h"
@@ -16,8 +17,11 @@ class BSTree {
     public:
         BSTree();
         int size();
-        string InOrder();
-        string RecursiveInOrder(BSTNode* aNode);
+        string InAlphaOrder();
+        string RecursiveAlphaInOrder(BSTNode* aNode);
+        
+        string InFreqOrder();
+        string RecursiveFreqInOrder(BSTNode* aNode);
         
         unsigned int FindMinFreq();
         

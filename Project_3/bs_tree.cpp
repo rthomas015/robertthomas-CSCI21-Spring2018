@@ -28,20 +28,80 @@ using namespace std;
         return treeSize;
     }
     
-    string BSTree::InOrder() {
+    //Alpha Order
+    string BSTree::InAlphaOrder() {
         stringstream ss;
-        ss << RecursiveInOrder(root);
+        ss << RecursiveAlphaInOrder(root);
         return ss.str();
     }
-    
-    string BSTree::RecursiveInOrder(BSTNode* aNode) {
+
+    string BSTree::RecursiveAlphaInOrder(BSTNode* aNode) {
         stringstream ss;
         if (aNode == NULL)
             return string();
             
-        ss << RecursiveInOrder(aNode->left_child());
+        ss << RecursiveAlphaInOrder(aNode->left_child());
         ss << aNode->get_Word() << " ";
-        ss << RecursiveInOrder(aNode->right_child());
+        ss << RecursiveAlphaInOrder(aNode->right_child());
+    
+        return ss.str();
+    }
+    
+    //Frequency Order
+    string BSTree::InFreqOrder() {
+        stringstream ss;
+        ss << RecursiveFreqInOrder(root);
+        
+        //sort vector [we can use any container like our list, or the tree (and bounce around the tree a million times)]
+        //but if the tree is big that might take longer than a sequential breakdown
+        vector<string> tempList;
+        string tempString_1 = "",
+               tempString_2 = "",
+               phString = "";
+        int x = 0;
+        
+        //read in to vector
+        for (int i=0;i<size();i++) {
+            ss >> phString;
+            tempList.push_back(phString);
+        }
+        
+        //sort vector
+        for (int j=0;j<size();j++) {
+            for (int i=0;i<size();i++) {
+                tempString_1 = tempList.at(i);
+                if (i != (size()-1)){
+                    x = i + 1;
+                }
+                tempString_2 = tempList.at(x);
+            
+                if (tempString_1 < tempString_2) {
+                    tempList.at(x) = tempString_1;
+                    tempList.at(i) = tempString_2;
+                }
+            }
+        }
+        
+        //clear stringstream
+        ss.str(string());
+        
+        //read out from vector
+        for (int i=0;i<size();i++) {
+            ss << tempList.at(i) << " ";
+        }
+        
+        return ss.str();
+    }
+    
+    
+    string BSTree::RecursiveFreqInOrder(BSTNode* aNode) {
+        stringstream ss;
+        if (aNode == NULL)
+            return string();
+            
+        ss << RecursiveFreqInOrder(aNode->left_child());
+        ss << aNode->get_Freq() << " ";
+        ss << RecursiveFreqInOrder(aNode->right_child());
     
         return ss.str();
     }
